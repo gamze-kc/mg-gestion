@@ -1,0 +1,8 @@
+.conteneur_menu {
+    background-color: #124072;
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
