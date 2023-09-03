@@ -6,3 +6,55 @@
     flex-wrap: wrap;
     align-items: flex-start;
 }
+
+
+/*
+:host ::ng-deep .gfgStyling {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    font-style: italic !important;
+    font-family: cursive !important;
+    background-color: red !important
+}
+ 
+:host ::ng-deep .p-panelmenu .p-panelmenu-panel  {
+    margin-bottom: 20px !important;
+    background-color: red !important;
+    color:pink !important;
+}
+
+**/
+:host ::ng-deep .p-panelmenu .p-panelmenu-header > a .p-menuitem-icon {
+    color: #ffffff;
+}
+:host ::ng-deep .p-panelmenu .p-panelmenu-header > a .p-panelmenu-icon {
+    color: #ffffff;
+}
+:host ::ng-deep .p-panelmenu .p-panelmenu-header.p-highlight > a {
+    color: #fff !important;
+}
+:host ::ng-deep .p-panelmenu .p-panelmenu-header > a {
+    color: #fff !important;
+    background: #0da350 !important;
+}
+:host
+    ::ng-deep
+    .p-panelmenu
+    .p-panelmenu-content
+    .p-menuitem
+    .p-menuitem-link
+    .p-menuitem-text {
+    color: #000 !important;
+}
+:host
+    ::ng-deep
+    .p-panelmenu
+    .p-panelmenu-content
+    .p-menuitem
+    .p-menuitem-link
+    .p-menuitem-icon {
+    color: #000 !important;
+}
+:host ::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
+    color: #000 !important;
+}
