@@ -11,6 +11,47 @@
             <td>De <p-calendar [style]="{'height':'25px' , 'width':'100px'}"  [(ngModel)]="dateDebut"></p-calendar> à <p-calendar [style]="{'height':'25px', 'width':'100px'}"  [(ngModel)]="dateFin"></p-calendar></td>
         </tr>
     </table>
+
+
+    <button (click)="showDialog()" class="btn_newTicket">+ Nouveau Ticket</button>
+
+<p-dialog header="Nouveau Ticket" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="true" [maximizable]="true">
+    <span class="p-float-label"  style="margin-top: 25px;">
+        <input type="text" style="width:100%;" id="float-input-objet" pInputText />
+        <label for="float-input-objet">Objet</label>
+    </span>
+
+    <table style="margin-top:20px;">
+        <tr>
+            <td>
+                Catégorie :
+            </td>
+            <td style="width:50px;"></td>
+            <td>Type :</td>
+        </tr>
+        <tr>
+            <td>
+                <p-dropdown [options]="categorie" [(ngModel)]="selectedCategorieNew" optionLabel="nom"></p-dropdown>
+            </td>
+            <td></td>
+            <td><p-dropdown [options]="types" [(ngModel)]="selectedTypeNew" optionLabel="nom"></p-dropdown>
+            </td>
+        </tr>
+    </table>
+
+    
+    
+    <span class="p-float-label" style="margin-top: 25px;">
+        <textarea id="float-input" style="width:100%;" rows="5" cols="30" pInputTextarea></textarea>
+        <label for="float-input">Commentaire</label>
+    </span>
+
+    <p-fileUpload [style]="{'margin-top':'10px'}" mode="basic" chooseLabel="Ajouter une pièce jointe" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*,.pdf" (onUpload)="onUpload($event)"></p-fileUpload>
+    
+    
+    
+    <div style="margin-top: 25px; display: flex; justify-content: flex-end;"><p-button  icon="pi pi-send" label="Envoyer"></p-button></div>
+</p-dialog>
 </div>
 
 

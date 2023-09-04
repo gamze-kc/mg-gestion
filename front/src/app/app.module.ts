@@ -12,9 +12,12 @@ import { FormsModule } from '@angular/forms';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { DialogModule } from 'primeng/dialog';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RequestService } from './request.service';
+import { LocalStorageDirective } from 'ngx-localstorage';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
+  providers: [MessageService, RequestService, CookieService],
   declarations: [
     AppComponent
   ],
@@ -23,14 +26,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     DialogModule,
     ToastModule,
+    LocalStorageDirective,
     DropdownModule,
     CascadeSelectModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-
   ],
-  providers: [MessageService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
