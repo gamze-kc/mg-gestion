@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { TypesTicketService } from './types_ticket.service';
 import { CreateTypesTicketDto } from './dto/create-types_ticket.dto';
 import { UpdateTypesTicketDto } from './dto/update-types_ticket.dto';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('APIs concernants la gestion des TYPE de Tickets')
 @Controller('types-ticket')
@@ -25,7 +25,7 @@ export class TypesTicketController {
         libelle: {
           type: 'string',
           example: 'Materiel',
-          description: 'id de l\'utilisateur'
+          description: 'libelle de la nouvelle catégorie'
         }
       }
     }
@@ -35,23 +35,35 @@ export class TypesTicketController {
     return this.typesTicketService.create(createTypesTicketDto);
   }
 
-  @Get()
-  findAll() {
-    return this.typesTicketService.findAll();
+  @ApiOperation({ summary: 'Api qui permet modifier le statut d\'une catégorie (mettre en actif ou inactif)' })
+  @ApiResponse({
+    status: 201,
+    description: 'Satut modifié'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @ApiBody({
+    schema: {
+      properties: {
+        id: {
+          type: 'number',
+          example: 1,
+          description: 'id de la catégorie à modifier'
+        },
+        actif: {
+          type: 'string',
+          example: 'INACTIF',
+          description: 'nouveau statut à assigner à la catégorie'
+        }
+      }
+    }
+  })
+  @Put('update_statut')
+  updateActif( @Body() updateTypesTicketDto: UpdateTypesTicketDto) {
+    return this.typesTicketService.updateActif(updateTypesTicketDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.typesTicketService.findOne(+id);
-  }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTypesTicketDto: UpdateTypesTicketDto) {
-    return this.typesTicketService.update(+id, updateTypesTicketDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.typesTicketService.remove(+id);
-  }
 }
