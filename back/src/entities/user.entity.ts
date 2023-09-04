@@ -1,5 +1,7 @@
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TicketEntity } from "./ticket.entity";
+import { UserRole } from "src/enums/role-user.enum";
+import { CommentaireEntity } from "./commentaire.entity";
 
 @Entity('user')
 export class UserEntity{
@@ -22,7 +24,18 @@ export class UserEntity{
     @Column({nullable: true})
     mail : string;
 
+    @Column({
+        type: 'enum',
+        enum: UserRole,
+        default: UserRole.USER
+    })
+    role : string;
+
     @OneToMany(() => TicketEntity, (ticket) => ticket.id, {nullable:false})
     tickets : TicketEntity[];
 
+    @OneToMany(() => CommentaireEntity, (commentaire) => commentaire.id, {nullable:false})
+    commentaires : CommentaireEntity[];
+
+  
 }

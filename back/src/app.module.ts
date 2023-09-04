@@ -6,6 +6,9 @@ import { UsersModule } from './users/users.module';
 import { UserEntity } from './entities/user.entity';
 import { TicketEntity } from './entities/ticket.entity';
 import { TicketsModule } from './tickets/tickets.module';
+import { CommentairesModule } from './commentaires/commentaires.module';
+import { CommentaireEntity } from './entities/commentaire.entity';
+import { TypesTicketModule } from './types_ticket/types_ticket.module';
 
 @Module({
   imports: [
@@ -16,11 +19,13 @@ import { TicketsModule } from './tickets/tickets.module';
       username: 'postgres',
       password: 'root',
       database: 'mggestion',
-      entities: [UserEntity, TicketEntity],
+      entities: [UserEntity, TicketEntity, CommentaireEntity],
       synchronize: true,
     }),
     UsersModule,
     TicketsModule,
+    CommentairesModule,
+    TypesTicketModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -42,13 +42,20 @@ export class TicketsController {
         categorie: {
           type: 'string',
           example: 'materiel ',
-          description: 'nom de la rue, ou de l\'avenue de l\'entreprise'
+          description: 'catégorie du ticket'
         },
         type: {
           type: 'string',
           example: 'demande',
-          description: 'code postale de l\'entreprise'
-        }
+          description: 'type du ticket '
+        },
+        piece_jointe: {
+          type: 'string',
+          example: 'inserer_exemple_piece_jointe',
+          description: 'piece jointe rattaché au tikcet'
+        },
+
+
       }
     }
   })
@@ -82,6 +89,30 @@ export class TicketsController {
   }
 
 
+  @ApiOperation({ summary: 'Api qui permet de retourner tous les tickets' })
+  @ApiResponse({
+    status: 201,
+    description: 'Tickets retournés'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @Get()
+  async getTousLesTickets(
+  ) : Promise<TicketEntity[]| Error> {
+    try
+    {
+      return this.ticketsService.getTousLesTickets();
+    }
+    catch (error) {
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+    }
+
+  }
 
 
   @ApiOperation({ summary: 'Api qui permet d\'avoir les details d\'un ticket depuis son id' })
@@ -116,7 +147,6 @@ export class TicketsController {
       }
     }
   }
-
 
 
 
