@@ -9,6 +9,7 @@ import { TicketsModule } from './tickets/tickets.module';
 import { CommentairesModule } from './commentaires/commentaires.module';
 import { CommentaireEntity } from './entities/commentaire.entity';
 import { TypesTicketModule } from './types_ticket/types_ticket.module';
+import { TypeTicketEntity } from './entities/type_ticket.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { TypesTicketModule } from './types_ticket/types_ticket.module';
       username: 'postgres',
       password: 'root',
       database: 'mggestion',
-      entities: [UserEntity, TicketEntity, CommentaireEntity],
+      entities: [UserEntity, TicketEntity, CommentaireEntity, TypeTicketEntity],
       synchronize: true,
     }),
     UsersModule,
