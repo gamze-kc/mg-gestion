@@ -1,0 +1,111 @@
+.conteneur_detail{
+    background-color: white;
+    height: 100%; 
+    width: 100%;
+    box-shadow: 0px 0px 15px rgb(190, 190, 190);
+    padding:5px;
+}
+
+.header_ticket{
+    background-color: blue;
+    height: 100px;
+}
+
+
+
+
+.ticket{
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+    width:100%;
+    border-collapse: collapse;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(194, 194, 194) ;
+}
+
+
+
+.ticket_title{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    padding: 0px;
+}
+
+.date{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    padding: 0px;
+    text-align: end;
+}
+
+.id{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.8em;
+    padding: 0px;
+    color:rgb(158, 158, 158);
+}
+
+.conteneur_commentaire{
+    width:100%;
+    height: calc(100% - 180px);
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: center;
+}
+
+.commentaire{
+    height:min-content;
+    width: 100%;
+    margin: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.recu{
+    background-color: #aad3ff;
+    margin-right: 50px;
+}
+
+.envoye{
+    background-color: #ffddaa;
+    margin-left: 50px;
+}
+
+.form_new_com{
+    display: flex;
+    margin-top:10px;
+    justify-content: end;
+    width: calc(100% - 25px);
+}
+
+.form_new_com button{
+    padding:5px;
+    padding-inline: 12px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-style:solid;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    color:#124072;
+    transition-duration: 0.5s;
+}
+
+.form_new_com button:hover{
+    background-color:#124072;
+    color:white;
+}
+
+.custom-file-upload{
+    background: #f7f7f7; 
+    padding: 8px;
+    border: 1px solid #e3e3e3; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }

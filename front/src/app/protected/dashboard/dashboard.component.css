@@ -1,0 +1,187 @@
+.title{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(216, 236, 255);
+    font-size: 1.7em;
+    font-weight: 600;
+    color:#124072;
+    margin-inline: 25px;
+    padding:5px;
+    padding-left: 25px;
+    border-radius: 5px;
+
+}
+
+.card{
+    background-color: rgb(216, 255, 224);
+    margin-inline: 25px;
+    width:400px;
+    height:250px;
+    border-radius: 10px;
+    padding:5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    border-color: white;
+    color:rgb(75, 75, 75);
+    margin:20px;
+}
+.card:hover{
+    background-color: white;
+    border-color: green;
+    box-shadow: 0px 0px 15px rgb(177, 255, 177);
+    border-style: solid;
+    border-width: 1px; 
+
+}
+.cardinfo{
+    background-color: rgb(216, 234, 255);
+    margin-inline: 25px;
+    width:400px;
+    height:250px;
+    border-radius: 10px;
+    padding:5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    border-color: white;
+    color:rgb(75, 75, 75);
+    margin:20px;
+}
+.cardinfo:hover{
+    background-color: white;
+    border-color: blue;
+    box-shadow: 0px 0px 15px rgb(177, 198, 255);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.secu_title{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#124072;
+    margin: 0px;
+    font-weight: 500;
+    font-size: 1.2em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.card h5{
+    padding:5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    margin: 0px;
+}
+.card table{
+    width:100%;
+}
+button{
+    padding:5px;
+    padding-inline: 12px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-style:solid;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    color:#124072;
+    transition-duration: 0.5s;
+}
+
+button:hover{
+    background-color: rgb(0, 143, 0);
+    color:white;
+}
+
+
+.dashboard_centre{
+    width: calc(100% - 25px) ;
+    margin-right:50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+
+
+.list_ticket{
+    width: 500px;
+    height: calc( 100vh - 200px );
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #c9c9c9;
+    background-color: white;
+    margin:20px;
+    }
+    
+
+
+
+
+.conteneur_ticket{
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.conteneur_ticket::-webkit-scrollbar{
+    width:7px;
+    background: white;
+    position: absolute;
+    transition-duration: 0.5s;
+}
+.conteneur_ticket::-webkit-scrollbar-thumb{
+    width:7px;
+    background: white;
+    border-radius: 5px;
+    position: absolute;
+    transition-duration: 0.5s;
+}
+.conteneur_ticket:hover::-webkit-scrollbar-thumb{
+    background:#124072;
+}
+
+
+
+
+.ticket{
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+    width:100%;
+    border-collapse: collapse;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(194, 194, 194) ;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.ticket:hover{
+    background-color: rgb(222, 225, 255);
+}
+
+
+.ticket_title{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    padding: 0px;
+}
+
+.date{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    padding: 0px;
+    text-align: end;
+}
+
+.id{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.8em;
+    padding: 0px;
+    color:rgb(158, 158, 158);
+}

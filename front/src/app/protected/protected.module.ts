@@ -4,8 +4,9 @@ import { ProtectedComponent } from './protected.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { MenuModule } from './menu/menu.module';
 import { HeaderModule } from './header/header.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -14,8 +15,11 @@ import { HeaderModule } from './header/header.module';
   imports: [
     MenuModule,
     HeaderModule,
+    ButtonModule,
+    ProtectedRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule, 
-    ProtectedRoutingModule
   ]
 })
 export class ProtectedModule { }

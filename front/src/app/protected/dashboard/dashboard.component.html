@@ -1,1 +1,65 @@
-<p>dashboard works!</p>
+<h3 class="title">Bienvenue sur notre plateforme d'aide</h3>
+<div class="dashboard_centre">
+<div class="card">
+    <h4 class="secu_title">Point sécurité</h4>
+    <table>
+        <tr style="height:25px;" >
+            <td ><h5>Thème - Titre de naananan</h5></td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px;"><p>Ma petite question du jour :</p></td>
+        </tr>
+        <tr></tr>
+        <tr><td style="padding-left: 10px;"><input name="reponse" type="radio" id="reponse1"/><label for="reponse1"> Réponse 1</label></td></tr>
+        <tr><td style="padding-left: 10px;"><input name="reponse" type="radio" id="reponse2"/><label for="reponse2"> Réponse 2</label></td></tr>
+        <tr><td style="padding-left: 10px;"><input name="reponse" type="radio" id="reponse3"/><label for="reponse3"> Réponse 3</label></td></tr>
+        <tr><td style="display: flex; justify-content: flex-end;">
+            <button>Verifier ma réponse</button>
+        </td></tr>
+    </table>
+</div>
+<div class="cardinfo">
+    <h4 class="secu_title">Information du Service Informatique</h4>
+    <table>
+        <tr style="height:25px;" >
+            <td ><h5>Thème - Titre de naananan</h5></td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px;"><p>Bonjour a tous, aujourd'hui ce sont les fetes de noel donc un panier est dispnible en saklle de pause</p></td>
+        </tr>
+        
+    </table>
+</div>
+<div class="list_ticket">
+<div class="conteneur_ticket">
+
+    <table class="ticket" *ngFor="let ticket of fakeArray">
+        <tr >
+            <td rowspan="8" style="width: 25px; text-align: center;  background-color: blue;">
+                <span class="pi pi-desktop" style="color:white;"></span>
+            </td>
+        </tr>
+        <tr >
+            <td style="padding-left: 5px; padding-top: 5px;" class="ticket_title">Demande materiel</td>
+            <td class="date">03/09/2023</td>
+        </tr>
+        
+        <tr>
+            <td class="id" style="padding-left: 5px;" colspan="2">2356345345</td>
+        </tr>
+        <tr style="height: 5px;">
+            <td colspan="2" style="padding-left: 5px;"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 5px;">Catégorie</td>
+        </tr>
+        <tr style="height: 5px;"><td colspan="2"></td></tr>
+        <tr>
+        <td colspan="2" style="font-size: 0.9em;padding-left: 5px;">Attribué à :  Francoos LORET </td>
+        </tr>
+        <tr style="text-align: end;">
+            <td colspan="2" style="padding-right: 5px;"><i class="pi pi-circle-fill" style=" font-size:0.8em;color:green"></i> En cours</td>
+        </tr>
+    </table>
+</div></div>
+</div>
