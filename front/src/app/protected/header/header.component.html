@@ -6,7 +6,7 @@
             <td></td>
             <td class="td_user">
                 <p-menu #menu [model]="items" [popup]="true"></p-menu>
-                <button class="btn_user" pButton type="button" (click)="menu.toggle($event)"> <i class="pi pi-user"></i> Mathias LORET  <i style="margin-left:5px" class="pi pi-chevron-down"></i></button>
+                <button class="btn_user" pButton type="button" (click)="menu.toggle($event)"> <i class="pi pi-user"></i> {{prenom}} {{nom}}  <i style="margin-left:5px" class="pi pi-chevron-down"></i></button>
 
             </td>
         </tr>

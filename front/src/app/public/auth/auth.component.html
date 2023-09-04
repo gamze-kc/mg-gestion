@@ -4,17 +4,8 @@
         <h3>Espace de connexion</h3>
         <div class="form_div">
             <label>Mon profil : </label>
-            <select placeholder="Saisir nom d'utilisateur">
-                <option disabled selected>Selectionner votre profil</option>
-                <option>Mathias LORET</option>
-                <option>Axel LORET</option>
-                <option>Gamze KOC</option>
-                <option>Francois LORET</option>
-                <option>Cecile PRAUD</option>
-                <option>Nataly LESENECHAL</option>
-                <option>Yve COULON</option>
-                <option>MAthieu BODET</option>
-                <option>Harvey SPECTER</option>
+            <select placeholder="Saisir nom d'utilisateur" [(ngModel)]="selectedUser">
+                <option *ngFor="let user of users" [ngValue]="user">{{user.prenom}} {{user.nom}}</option>
             </select>
         </div>
         <div class="form_div">
