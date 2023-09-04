@@ -9,7 +9,7 @@
 
 .list_ticket{
 width: 350px;
-height: calc( 100vh - 130px );
+height: calc( 100vh - 150px );
 border-right-width: 1px;
 border-right-style: solid;
 border-right-color: #c9c9c9;
@@ -17,14 +17,15 @@ background-color: white;
 }
 
 .affichage_ticket{
-    height: calc( 100vh - 130px );
+    height: calc( 100vh - 150px );
     width: calc(100vw - 550px);
     padding: 25px;
+    background-color: rgb(236, 236, 236);
 
 }
 
 .sub_header{
-    height:80px;
+    height:100px;
     width:100%;
     border-bottom-style: solid;
     border-bottom-width: 1px;

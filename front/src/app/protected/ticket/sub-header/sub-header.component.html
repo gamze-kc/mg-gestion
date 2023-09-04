@@ -1,61 +1,83 @@
 <div class="sub_header_form">
-    <table>
+    <table style="min-width: fit-content; border-right-style: solid; border-right-width: 1px;">
         <tr>
-            <td>Catégorie:</td>
+            <td style="width: 300px;">Catégorie:</td>
             <td style="width: 50px;"></td>
-            <td>Afficher les tickets sur la période :</td>
+            <td style="width: 300px;">Type:</td>
+            <td style="width: 50px;"></td>
+            <td style="width: 400px;"> Afficher les tickets sur la période :</td>
         </tr>
         <tr>
-            <td><p-dropdown [style]="{'height':'25px' }" [options]="categorie" [(ngModel)]="selectedCategorie" placeholder="Choisir une catégorie" [editable]="true" optionLabel="nom" ></p-dropdown></td>
+            <td><p-dropdown [style]="{'height':'25px' }" [options]="categorie" [(ngModel)]="selectedCategorie"
+                    placeholder="Choisir une catégorie" [editable]="true" optionLabel="nom"></p-dropdown></td>
             <td></td>
-            <td>De <p-calendar [style]="{'height':'25px' , 'width':'100px'}"  [(ngModel)]="dateDebut"></p-calendar> à <p-calendar [style]="{'height':'25px', 'width':'100px'}"  [(ngModel)]="dateFin"></p-calendar></td>
-        </tr>
-    </table>
-
-
-    <button (click)="showDialog()" class="btn_newTicket">+ Nouveau Ticket</button>
-
-<p-dialog header="Nouveau Ticket" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="true" [maximizable]="true">
-    <span class="p-float-label"  style="margin-top: 25px;">
-        <input type="text" style="width:100%;" id="float-input-objet" pInputText />
-        <label for="float-input-objet">Objet</label>
-    </span>
-
-    <table style="margin-top:20px;">
-        <tr>
-            <td>
-                Catégorie :
-            </td>
-            <td style="width:50px;"></td>
-            <td>Type :</td>
-        </tr>
-        <tr>
-            <td>
-                <p-dropdown [options]="categorie" [(ngModel)]="selectedCategorieNew" optionLabel="nom"></p-dropdown>
-            </td>
+            <td><p-dropdown [style]="{'height':'25px' }" [options]="types" [(ngModel)]="selectedType"
+                    placeholder="Choisir une catégorie" [editable]="true" optionLabel="nom"></p-dropdown></td>
             <td></td>
-            <td><p-dropdown [options]="types" [(ngModel)]="selectedTypeNew" optionLabel="nom"></p-dropdown>
+            <td>De <p-calendar [style]="{'height':'25px' , 'width':'100px'}" [(ngModel)]="dateDebut"></p-calendar> à
+                <p-calendar [style]="{'height':'25px', 'width':'100px'}" [(ngModel)]="dateFin"></p-calendar></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <div style="display: flex; justify-content: flex-start; padding-right: 50px;">
+                    <button class="btn" (click)="Filtre()"><i class="pi pi-sliders-h" style="font-size: 1rem"></i>
+                        Filtrer</button>
+                    <button class="btn" (click)="reloadFiltre()"><i class="pi pi-undo" style="font-size: 1rem"></i>
+                        Réinitaliser les filtres</button>
+                </div>
+
             </td>
         </tr>
+
     </table>
+    <div class="conteneur_new">
+        <button (click)="showDialog()" class="btn_newTicket">+ Nouveau Ticket</button>
+    </div>
 
-    
-    
-    <span class="p-float-label" style="margin-top: 25px;">
-        <textarea id="float-input" style="width:100%;" rows="5" cols="30" pInputTextarea></textarea>
-        <label for="float-input">Commentaire</label>
-    </span>
 
-    <p-fileUpload [style]="{'margin-top':'10px'}" mode="basic" chooseLabel="Ajouter une pièce jointe" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*,.pdf" (onUpload)="onUpload($event)"></p-fileUpload>
-    
-    
-    
-    <div style="margin-top: 25px; display: flex; justify-content: flex-end;"><p-button  icon="pi pi-send" label="Envoyer"></p-button></div>
-</p-dialog>
+
+
+
+
+    <p-dialog header="Nouveau Ticket" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+        [draggable]="false" [resizable]="true" [maximizable]="true">
+        <span class="p-float-label" style="margin-top: 25px;">
+            <input type="text" style="width:100%;" id="float-input-objet" pInputText />
+            <label for="float-input-objet">Objet</label>
+        </span>
+
+        <table style="margin-top:20px;">
+            <tr>
+                <td>
+                    Catégorie :
+                </td>
+                <td style="width:50px;"></td>
+                <td>Type :</td>
+            </tr>
+            <tr>
+                <td>
+                    <p-dropdown [options]="categorie" [(ngModel)]="selectedCategorieNew" optionLabel="nom"></p-dropdown>
+                </td>
+                <td></td>
+                <td><p-dropdown [options]="types" [(ngModel)]="selectedTypeNew" optionLabel="nom"></p-dropdown>
+                </td>
+            </tr>
+        </table>
+
+
+
+        <span class="p-float-label" style="margin-top: 25px;">
+            <textarea id="float-input" style="width:100%;" rows="5" cols="30" pInputTextarea></textarea>
+            <label for="float-input">Commentaire</label>
+        </span>
+
+        <p-fileUpload [style]="{'margin-top':'10px'}" mode="basic" chooseLabel="Ajouter une pièce jointe" name="demo[]"
+            url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*,.pdf"
+            (onUpload)="onUpload($event)"></p-fileUpload>
+
+
+
+        <div style="margin-top: 25px; display: flex; justify-content: flex-end;"><p-button icon="pi pi-send"
+                label="Envoyer"></p-button></div>
+    </p-dialog>
 </div>
-
-
-
-
-
-

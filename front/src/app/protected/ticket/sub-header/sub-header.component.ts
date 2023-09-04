@@ -26,6 +26,7 @@ export class SubHeaderComponent   implements OnInit   {
   dateDebut: Date | undefined;
   dateFin: Date | undefined;
   selectedCategorie: Catégorie | undefined;
+  selectedType: Type | undefined;
   selectedCategorieNew: Catégorie | undefined;
   selectedTypeNew: Catégorie | undefined;
   uploadedFiles: any[] = [];
@@ -51,6 +52,15 @@ export class SubHeaderComponent   implements OnInit   {
 showDialog() {
     this.visible = true;
 }
+
+Filtre() {
+  this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
+}
+
+reloadFiltre() {
+  this.messageService.add({ severity: 'info', summary: 'Les filtres ont été effacés', detail: '' });
+}
+
 onUpload(event: any) {
   for (let file of event.files) {
     this.uploadedFiles.push(file);
