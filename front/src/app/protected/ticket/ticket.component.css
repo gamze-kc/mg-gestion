@@ -1,0 +1,38 @@
+.page_ticket{
+    height:100%; 
+    width:100%;
+    border-collapse: collapse;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.list_ticket{
+width: 350px;
+height: calc( 100vh - 130px );
+border-right-width: 1px;
+border-right-style: solid;
+border-right-color: #c9c9c9;
+background-color: white;
+}
+
+.affichage_ticket{
+    height: calc( 100vh - 130px );
+    width: calc(100vw - 550px);
+    padding: 25px;
+
+}
+
+.sub_header{
+    height:80px;
+    width:100%;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #c9c9c9;
+    background-color: white;
+}
+
+.infos_tickets{
+    display: flex;
+    flex-wrap: wrap;
+}

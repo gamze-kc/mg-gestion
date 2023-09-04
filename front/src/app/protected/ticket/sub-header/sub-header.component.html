@@ -1,1 +1,20 @@
-<p>sub-header works!</p>
+<div class="sub_header_form">
+    <table>
+        <tr>
+            <td>Catégorie:</td>
+            <td style="width: 50px;"></td>
+            <td>Afficher les tickets sur la période :</td>
+        </tr>
+        <tr>
+            <td><p-dropdown [style]="{'height':'25px' }" [options]="categorie" [(ngModel)]="selectedCategorie" placeholder="Choisir une catégorie" [editable]="true" optionLabel="nom" ></p-dropdown></td>
+            <td></td>
+            <td>De <p-calendar [style]="{'height':'25px' , 'width':'100px'}"  [(ngModel)]="dateDebut"></p-calendar> à <p-calendar [style]="{'height':'25px', 'width':'100px'}"  [(ngModel)]="dateFin"></p-calendar></td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+

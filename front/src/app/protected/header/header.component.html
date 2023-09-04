@@ -1,3 +1,13 @@
-<div class="header">
-    <img src="\assets\logo.perrault.png"/>
-</div>
+
+    <table class="header">
+        <tr>
+            <td class="td_logo"><img src="\assets\logo.perrault.png" class="logo_ap"/></td>
+            <td class="td_title"><h3 class="title">Support Informatique Perrault</h3></td>
+            <td></td>
+            <td class="td_user">
+                <p-menu #menu [model]="items" [popup]="true"></p-menu>
+                <button class="btn_user" pButton type="button" (click)="menu.toggle($event)"> <i class="pi pi-user"></i> Mathias LORET  <i style="margin-left:5px" class="pi pi-chevron-down"></i></button>
+
+            </td>
+        </tr>
+    </table>

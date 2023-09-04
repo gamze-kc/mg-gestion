@@ -1,0 +1,65 @@
+.conteneur_ticket{
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.conteneur_ticket::-webkit-scrollbar{
+    width:7px;
+    background: white;
+    position: absolute;
+    transition-duration: 0.5s;
+}
+.conteneur_ticket::-webkit-scrollbar-thumb{
+    width:7px;
+    background: white;
+    border-radius: 5px;
+    position: absolute;
+    transition-duration: 0.5s;
+}
+.conteneur_ticket:hover::-webkit-scrollbar-thumb{
+    background:#124072;
+}
+
+
+
+
+.ticket{
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+    width:100%;
+    border-collapse: collapse;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(194, 194, 194) ;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.ticket:hover{
+    background-color: rgb(222, 225, 255);
+}
+
+
+.ticket_title{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    padding: 0px;
+}
+
+.date{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    padding: 0px;
+    text-align: end;
+}
+
+.id{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.8em;
+    padding: 0px;
+    color:rgb(158, 158, 158);
+}

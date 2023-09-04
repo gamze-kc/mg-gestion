@@ -1,0 +1,6 @@
+.sub_header_form{
+    height: 100%;
+    display: flex;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+}

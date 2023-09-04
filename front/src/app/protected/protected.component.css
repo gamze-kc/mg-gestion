@@ -1,11 +1,10 @@
 .page{
     background-color: #F8F9FA;
-    height:calc(100vh - 50px);
+    height:calc(100vh - 60px);
     display: flex;
 }
 
 .centre_page{
     height: calc(100vh - 50px);
     width: calc(100%);
-
 }
