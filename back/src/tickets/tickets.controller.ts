@@ -1,0 +1,157 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
+import { TicketsService } from './tickets.service';
+import { CreateTicketDto } from './dto/create-ticket.dto';
+import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { ApiOperation, ApiResponse, ApiTags, ApiBody, ApiParam } from '@nestjs/swagger';
+import { TicketEntity } from 'src/entities/ticket.entity';
+
+@ApiTags('APIs concernants la gestion des tickets')
+@Controller('tickets')
+export class TicketsController {
+  constructor(private readonly ticketsService: TicketsService) { }
+
+
+
+  @ApiOperation({ summary: 'Api qui permet de créer un ticket' })
+  @ApiResponse({
+    status: 201,
+    description: 'Ticket créé'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @ApiBody({
+    schema: {
+      properties: {
+        id_proprietaire: {
+          type: 'number',
+          example: '1',
+          description: 'id de l\'utilisateur'
+        },
+        objet: {
+          type: 'string',
+          example: 'Demande d\'un nouvel écran ',
+          description: 'objet du ticket'
+        },
+        description: {
+          type: 'string',
+          example: 'Mon ecran actuelle a quelques soucis, donc j\'aimerai savoir s\'il est possible d\'en avoir un nouveau',
+          description: 'description de la demande'
+        },
+        categorie: {
+          type: 'string',
+          example: 'materiel ',
+          description: 'nom de la rue, ou de l\'avenue de l\'entreprise'
+        },
+        type: {
+          type: 'string',
+          example: 'demande',
+          description: 'code postale de l\'entreprise'
+        }
+      }
+    }
+  })
+
+  @Post('new')
+  async create(@Body() createTicketDto: CreateTicketDto): Promise<TicketEntity | Error> {
+
+    try {
+
+      //console.log(createTicketDto);
+      const newTicket = await this.ticketsService.create(createTicketDto);
+
+      //console.log(newTicket);
+      return newTicket;
+
+    }
+    catch (error) {
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la création du ticket : ' + error.message,
+        500,
+      );
+
+    }
+
+  }
+
+
+
+
+  @ApiOperation({ summary: 'Api qui permet d\'avoir les details d\'un ticket depuis son id' })
+  @ApiResponse({
+    status: 201,
+    description: 'Ticket retourné '
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @ApiParam({
+   
+    name : 'idTicket',
+    description : 'Id du ticket',
+    example : 1
+  })
+
+  @Get(':id')
+  async getTicketParId(
+    @Param('idTicket') idTicket : number 
+  ) : Promise<TicketEntity| Error> {
+   {
+    try {
+      const ticket = await this.ticketsService.getTicketParId(idTicket)
+      return ticket;
+
+    } catch (error) {
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+    }
+  }
+
+
+
+
+/*
+  @Get('/tickets')
+  getTousLesTickets() {
+    return this.ticketsService.findAll();
+  }
+
+  @Get('/tickets/user/:id')
+  getTicketsUser() {
+    return this.ticketsService.findAll();
+  }
+
+
+
+
+
+
+
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.ticketsService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateTicketDto: UpdateTicketDto) {
+    return this.ticketsService.update(+id, updateTicketDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.ticketsService.remove(+id);*/
+  }
+}
+
+
