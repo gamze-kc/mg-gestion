@@ -55,6 +55,17 @@ async getTicketParId(id: number) : Promise<TicketEntity>{
   }
 }
 
+async getTousLesTickets() : Promise<TicketEntity[]>{
+
+  try{
+    return this.ticketRepository.find();
+  }
+  catch(error)
+  {
+    return error;
+  }
+}
+
 
   findAll() {
     return `This action returns all tickets`;

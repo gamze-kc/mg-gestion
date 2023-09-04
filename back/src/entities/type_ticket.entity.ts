@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typ
 import { TicketEntity } from "./ticket.entity";
 
 @Entity('type_tickets')
-export class UserEntity{
+export class TypeTicketEntity{
 
     @PrimaryGeneratedColumn()
     id: number; 
@@ -13,8 +13,7 @@ export class UserEntity{
     @Column({nullable: false})
     actif : string;
 
-
     @OneToMany(() => TicketEntity, (ticket) => ticket.id, {nullable:false})
     tickets : TicketEntity[];
-
+    
 }
