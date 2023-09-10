@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable, map } from 'rxjs';
 
 interface User {
+  role: any,
   id : number,
   nom : string, 
   prenom : string
