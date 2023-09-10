@@ -41,12 +41,11 @@ export class TypesTicketService {
     try{
 
       const type = await this.typeTicketRpository.findOneBy({id : typeData.id});
-
       type.actif = typeData.actif;
 
       const newType = await this.typeTicketRpository.save(type);
-
       return newType;
+
     }catch(error)
     {
       return error;

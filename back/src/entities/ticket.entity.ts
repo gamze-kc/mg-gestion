@@ -2,6 +2,7 @@ import { TicketEtatEnum } from "src/enums/ticket-etat.enum";
 import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "./user.entity";
 import { TypeTicketEntity } from "./type_ticket.entity";
+import { CategorieTicketEntity } from "./categorie_ticket.entity";
 
 @Entity('ticket')
 export class TicketEntity{
@@ -42,6 +43,8 @@ export class TicketEntity{
 
     @ManyToOne(() => TypeTicketEntity, (ticket) => ticket.id, {nullable:true})
     id_ticket : number;
+
+
     
     
 }

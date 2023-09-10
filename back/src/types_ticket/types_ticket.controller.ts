@@ -4,16 +4,17 @@ import { CreateTypesTicketDto } from './dto/create-types_ticket.dto';
 import { UpdateTypesTicketDto } from './dto/update-types_ticket.dto';
 import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('APIs concernants la gestion des TYPE de Tickets')
+@ApiTags('APIs concernants la gestion des TYPES de Tickets')
 @Controller('types-ticket')
 export class TypesTicketController {
   constructor(private readonly typesTicketService: TypesTicketService) { }
 
 
-  @ApiOperation({ summary: 'Api qui permet de créer un ticket' })
+
+  @ApiOperation({ summary: 'Api qui permet de créer un type de ticket' })
   @ApiResponse({
     status: 201,
-    description: 'Ticket créé'
+    description: 'Type créé'
   })
   @ApiResponse({
     status: 400,
@@ -24,8 +25,8 @@ export class TypesTicketController {
       properties: {
         libelle: {
           type: 'string',
-          example: 'Materiel',
-          description: 'libelle de la nouvelle catégorie'
+          example: 'Demande',
+          description: 'libelle du nouveau type'
         }
       }
     }
@@ -35,7 +36,24 @@ export class TypesTicketController {
     return this.typesTicketService.create(createTypesTicketDto);
   }
 
-  @ApiOperation({ summary: 'Api qui permet modifier le statut d\'une catégorie (mettre en actif ou inactif)' })
+
+
+  @ApiOperation({ summary: 'Api retournant la liste des types de tickes' })
+  @ApiResponse({
+    status: 201,
+    description: 'liste renvoyé avec succès'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @Get()
+  getAllUsers() {
+    return this.typesTicketService.getTousLesTypes();
+  }
+
+
+  @ApiOperation({ summary: 'Api qui permet modifier le statut d\'un type (mettre en actif ou inactif)' })
   @ApiResponse({
     status: 201,
     description: 'Satut modifié'
@@ -50,18 +68,18 @@ export class TypesTicketController {
         id: {
           type: 'number',
           example: 1,
-          description: 'id de la catégorie à modifier'
+          description: 'id du type à modifier'
         },
         actif: {
           type: 'string',
           example: 'INACTIF',
-          description: 'nouveau statut à assigner à la catégorie'
+          description: 'nouveau statut à assigner au type'
         }
       }
     }
   })
   @Put('update_statut')
-  updateActif( @Body() updateTypesTicketDto: UpdateTypesTicketDto) {
+  updateActif(@Body() updateTypesTicketDto: UpdateTypesTicketDto) {
     return this.typesTicketService.updateActif(updateTypesTicketDto);
   }
 
