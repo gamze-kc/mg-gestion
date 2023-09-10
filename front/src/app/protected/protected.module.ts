@@ -7,10 +7,12 @@ import { HeaderModule } from './header/header.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ButtonModule } from 'primeng/button';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { ParametreAppComponent } from './parametre-app/parametre-app.component';
 
 @NgModule({
   declarations: [
-    ProtectedComponent
+    ProtectedComponent,
   ],
   imports: [
     MenuModule,

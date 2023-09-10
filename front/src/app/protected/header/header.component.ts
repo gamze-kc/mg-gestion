@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RequestService } from 'app/request.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MenuItem, MessageService } from 'primeng/api';
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
                 label: 'Déconnexion',
                 icon: 'pi pi-power-off',
                 command: () => {
-                    this.update();
+                    this.deconnexion();
                 }
          
               }
@@ -27,14 +28,13 @@ export class HeaderComponent implements OnInit {
   prenom :string = "";
   constructor(private messageService: MessageService, 
     private cookieService: CookieService, 
-    private requestService: RequestService) {}
+    private requestService: RequestService, 
+    private router : Router) {}
   
   ngOnInit() {
-
     const id = +this.cookieService.get('AuthUser');
-    console.log(this.cookieService.get('AuthUser'))
       if(this.cookieService.get('AuthUser')){
-        console.log('test')
+
         this.requestService.OneUser(+this.cookieService.get('AuthUser')).subscribe((user) => {
           this.prenom = user.prenom; 
           this.nom = user.nom;
@@ -48,8 +48,11 @@ export class HeaderComponent implements OnInit {
 
 
 
-  update() {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Updated' });
+  deconnexion() {
+    this.cookieService.delete('AuthUser');
+    this.cookieService.delete('Role');
+    this.router.navigate(['/'])
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Déconnexion reussit' });
   }
 
 }

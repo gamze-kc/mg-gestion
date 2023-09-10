@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
 import { RequestService } from 'app/request.service';
 import { FormsModule } from '@angular/forms';
-
+import { DialogModule } from 'primeng/dialog';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -12,7 +13,9 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule, 
-    FormsModule
-  ]
+    FormsModule,
+    DialogModule
+  ], 
+  providers : [MessageService]
 })
 export class AuthModule { }
