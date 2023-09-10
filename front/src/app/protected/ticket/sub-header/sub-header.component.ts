@@ -54,10 +54,15 @@ showDialog() {
 }
 
 Filtre() {
-  this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
+  this.messageService.add({ severity: 'info', summary: 'La liste à été filtré', detail: '' });
 }
 
 reloadFiltre() {
+  this.selectedCategorie = undefined; 
+  this.dateDebut = undefined; 
+  this.dateFin = undefined; 
+  this.selectedType = undefined; 
+  this.Filtre();
   this.messageService.add({ severity: 'info', summary: 'Les filtres ont été effacés', detail: '' });
 }
 
