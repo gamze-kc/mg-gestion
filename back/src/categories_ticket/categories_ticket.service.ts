@@ -22,7 +22,7 @@ export class CategoriesTicketService {
       let categorie = new CategorieTicketEntity();
       categorie.libelle = categorieData.libelle;
       categorie.actif = ActifEnum.ACTIF;
-      console.log(categorie);
+    
       const newCategorie = await this.categorieTicketRpository.save({...categorie});
  
       
@@ -37,18 +37,38 @@ export class CategoriesTicketService {
 
 
   async getAllCategories() {
-    return await this.categorieTicketRpository.find({where : {actif : "actif"}});
+    return await this.categorieTicketRpository.find({where : {actif : "ACTIF"}});
   }
 
-  async getCategorie(id: number) {
-    return await this.categorieTicketRpository.find({where : {id : id}});
+  async getCategorie(id: number) :Promise<CategorieTicketEntity> {
+    try{
+     
+      return await this.categorieTicketRpository.findOneBy({id : id});
+
+    }catch(error)
+    {
+      return error;
+    }
   }
 
-  update(id: number, updateCategoriesTicketDto: UpdateCategoriesTicketDto) {
-    return `This action updates a #${id} categoriesTicket`;
+
+  async updateActif(categorieData : UpdateCategoriesTicketDto)  :Promise<CategorieTicketEntity> {
+    
+    try{
+
+      const type = await this.categorieTicketRpository.findOneBy({id : categorieData.id});
+      type.actif = categorieData.actif;
+
+      const newCategorie = await this.categorieTicketRpository.save(type);
+      return newCategorie;
+
+    }catch(error)
+    {
+      return error;
+    }
+
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} categoriesTicket`;
-  }
+
+
 }

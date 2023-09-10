@@ -2,8 +2,8 @@ import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typ
 import { TicketEntity } from "./ticket.entity";
 import { ActifEnum } from "src/enums/actif.enum";
 
-@Entity('categorie_ticket')
-export class CategorieTicketEntity{
+@Entity('niveau_ticket')
+export class NiveauTicketEntity{
 
     @PrimaryGeneratedColumn()
     id: number; 

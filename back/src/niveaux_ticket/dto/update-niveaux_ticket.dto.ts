@@ -1,10 +1,9 @@
 import { PartialType } from '@nestjs/swagger';
-import { CreateCategoriesTicketDto } from './create-categories_ticket.dto';
+import { CreateNiveauxTicketDto } from './create-niveaux_ticket.dto';
 import { IsNotEmpty, IsNumber } from '@nestjs/class-validator';
 
 
-export class UpdateCategoriesTicketDto {
-
+export class UpdateNiveauxTicketDto extends PartialType(CreateNiveauxTicketDto) {
     @IsNotEmpty( {message: 'Le champs id ne peut pas être vide'})
     @IsNumber()
     id : number;
@@ -14,3 +13,4 @@ export class UpdateCategoriesTicketDto {
 
 
 }
+

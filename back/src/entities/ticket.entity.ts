@@ -3,6 +3,7 @@ import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typ
 import { UserEntity } from "./user.entity";
 import { TypeTicketEntity } from "./type_ticket.entity";
 import { CategorieTicketEntity } from "./categorie_ticket.entity";
+import { NiveauTicketEntity } from "./niveau_ticket.entity";
 
 @Entity('ticket')
 export class TicketEntity{
@@ -42,7 +43,14 @@ export class TicketEntity{
     id_user_support : number;
 
     @ManyToOne(() => TypeTicketEntity, (ticket) => ticket.id, {nullable:true})
-    id_ticket : number;
+    id_type_ticket : number;
+
+    @ManyToOne(() => CategorieTicketEntity, (ticket) => ticket.id, {nullable:true})
+    id_categorie_ticket : number;
+
+    @ManyToOne(() => NiveauTicketEntity, (ticket) => ticket.id, {nullable:true})
+    id_niveau_ticket : number;
+
 
 
     

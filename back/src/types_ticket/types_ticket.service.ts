@@ -13,56 +13,68 @@ export class TypesTicketService {
   constructor(
     @InjectRepository(TypeTicketEntity)
     private typeTicketRpository: Repository<TypeTicketEntity>
-  ){}
+  ) { }
 
 
-  async create(typeData: CreateTypesTicketDto) :Promise<TypeTicketEntity> {
+  async create(typeData: CreateTypesTicketDto): Promise<TypeTicketEntity> {
 
-    try{
-     
+    try {
+
       let type = new TypeTicketEntity();
       type.libelle = typeData.libelle;
       type.actif = ActifEnum.ACTIF;
 
-      const newType = await this.typeTicketRpository.save({...type});
+      const newType = await this.typeTicketRpository.save({ ...type });
       return newType;
-    }catch(error)
-    {
+    } catch (error) {
       return error;
     }
   }
 
-  async getTousLesTypes() {
-    return await this.typeTicketRpository.find({where : {actif : 'ACTIF'}});
+  async getTousLesTypes(): Promise<TypeTicketEntity[]> {
+    try {
+      return await this.typeTicketRpository.find({ where: { actif: 'ACTIF' } });
+
+    }
+    catch (error) {
+      return error;
+    }
   }
 
-  async updateActif(typeData : UpdateTypesTicketDto)  :Promise<TypeTicketEntity> {
-    
-    try{
+  async getType(id: number): Promise<TypeTicketEntity> {
+    try {
+      return await this.typeTicketRpository.findOneBy({ id: id });
+    } catch (error) {
+      return error;
+    }
+  }
 
-      const type = await this.typeTicketRpository.findOneBy({id : typeData.id});
+  async updateActif(typeData: UpdateTypesTicketDto): Promise<TypeTicketEntity> {
+
+    try {
+
+      const type = await this.typeTicketRpository.findOneBy({ id: typeData.id });
       type.actif = typeData.actif;
 
       const newType = await this.typeTicketRpository.save(type);
       return newType;
 
-    }catch(error)
-    {
+    } catch (error) {
       return error;
     }
 
   }
 
-/*
-  findOne(id: number) {
-    return `This action returns a #${id} typesTicket`;
-  }
-
-  update(id: number, updateTypesTicketDto: UpdateTypesTicketDto) {
-    return `This action updates a #${id} typesTicket`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} typesTicket`;
-  }*/
+  /*
+    findOne(id: number) {
+      return `This action returns a #${id} typesTicket`;
+    }
+  
+    update(id: number, updateTypesTicketDto: UpdateTypesTicketDto) {
+      return `This action updates a #${id} typesTicket`;
+    }
+  
+    remove(id: number) {
+      return `This action removes a #${id} typesTicket`;
+    }*/
 }

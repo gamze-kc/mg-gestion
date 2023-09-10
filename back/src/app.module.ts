@@ -12,6 +12,8 @@ import { TypesTicketModule } from './types_ticket/types_ticket.module';
 import { TypeTicketEntity } from './entities/type_ticket.entity';
 import { CategoriesTicketModule } from './categories_ticket/categories_ticket.module';
 import { CategorieTicketEntity } from './entities/categorie_ticket.entity';
+import { NiveauxTicketModule } from './niveaux_ticket/niveaux_ticket.module';
+import { NiveauTicketEntity } from './entities/niveau_ticket.entity';
 
 
 @Module({
@@ -23,7 +25,7 @@ import { CategorieTicketEntity } from './entities/categorie_ticket.entity';
       username: 'postgres',
       password: 'root',
       database: 'mggestion',
-      entities: [UserEntity, TicketEntity, CommentaireEntity, TypeTicketEntity, CategorieTicketEntity],
+      entities: [UserEntity, TicketEntity, CommentaireEntity, TypeTicketEntity, CategorieTicketEntity, NiveauTicketEntity],
       synchronize: true,
     }),
     UsersModule,
@@ -31,6 +33,7 @@ import { CategorieTicketEntity } from './entities/categorie_ticket.entity';
     CommentairesModule,
     TypesTicketModule,
     CategoriesTicketModule,
+    NiveauxTicketModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Put, Param, Delete, HttpException }
 import { CategoriesTicketService } from './categories_ticket.service';
 import { CreateCategoriesTicketDto } from './dto/create-categories_ticket.dto';
 import { UpdateCategoriesTicketDto } from './dto/update-categories_ticket.dto';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 import { CategorieTicketEntity } from 'src/entities/categorie_ticket.entity';
 
 @ApiTags('APIs concernants la gestion des CATEGORIES de Tickets')
@@ -57,9 +57,89 @@ export class CategoriesTicketController {
     return this.categoriesTicketService.getAllCategories();
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateCategoriesTicketDto: UpdateCategoriesTicketDto) {
-    return this.categoriesTicketService.update(+id, updateCategoriesTicketDto);
+
+
+  
+
+
+  @ApiOperation({ summary: 'Api qui permet de récupérer une catégorie depuis son ID' })
+  @ApiResponse({
+    status: 201,
+    description: 'Catégorie récupérée'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @ApiParam({
+    name: 'idCategorie',
+    description: "L'ID de la categorie",
+    example: 2
+  })
+  @Get("categorie/:idCategorie")
+  getCategorie(
+    @Param('idCategorie') idCategorie: number
+  ): Promise<CategorieTicketEntity | Error> {
+    try {
+      console.log(idCategorie);
+      return this.categoriesTicketService.getCategorie(idCategorie);
+    } catch (error) {
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la récuperation de la catégorie ' + error.message,
+        500,
+      );
+    }
+  }
+
+  @ApiOperation({ summary: 'Api qui permet modifier le statut d\'une catégorie (mettre en actif ou inactif)' })
+  @ApiResponse({
+    status: 201,
+    description: 'Satut modifié'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @ApiBody({
+    schema: {
+      properties: {
+        id: {
+          type: 'number',
+          example: 1,
+          description: 'id du type à modifier'
+        },
+        actif: {
+          type: 'string',
+          example: 'INACTIF',
+          description: 'nouveau statut à assigner au type'
+        }
+      }
+    }
+  })
+  @Put('update_statut')
+  updateActif(@Body() updateCategoriesTicketDto: UpdateCategoriesTicketDto) {
+    try{
+      return this.categoriesTicketService.updateActif(updateCategoriesTicketDto);
+    }catch(error)
+    {
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la récuperation de la catégorie ' + error.message,
+        500,
+
+      );
+    }
   }
 
 }
