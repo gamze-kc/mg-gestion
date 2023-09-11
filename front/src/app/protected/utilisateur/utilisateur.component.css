@@ -1,0 +1,17 @@
+.tab_users{
+    background-color: red;
+    margin-top:50px;
+    width:80%; 
+    margin-left:10%;
+}
+
+.test:hover td{
+    background-color: #12407273;
+    color:white;
+    transition-duration: 0.1s;
+}
+
+.header_tab th{
+    background-color: #124072;
+    color:white;
+}

@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { ParametreAppComponent } from './parametre-app/parametre-app.component';
-
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     ProtectedComponent,
@@ -21,6 +21,7 @@ import { ParametreAppComponent } from './parametre-app/parametre-app.component';
     ProtectedRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    TableModule,
     CommonModule, 
   ]
 })

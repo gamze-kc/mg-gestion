@@ -1,1 +1,25 @@
-<app-list-util></app-list-util>
+<div class="card tab_users">
+    <p-table [value]="users" [scrollable]="true" scrollHeight="calc(100vh - 100px)" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr class="header_tab">
+                <th>#</th>
+                <th>matricule</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Mail</th>
+                <th>Etat</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr class="test">
+                <td>{{user.id}}</td>
+                <td>{{user.matricule}}</td>
+                <td>{{user.prenom}}</td>
+                <td>{{user.nom}}</td>
+                <td>{{user.mail}}</td>
+                <td *ngIf="user.actif == 'actif'"><p  style="margin:0px; padding:0px; background-color: rgba(0, 114, 0, 0.281); width: 60px; text-align: center;color:rgb(0, 95, 0); border-radius: 10px;">{{user.actif}}</p></td>
+                <td *ngIf="user.actif != 'actif'" ><p style="margin:0px; padding:0px; background-color: rgba(114, 0, 0, 0.281); width: 60px; text-align: center;color:rgb(95, 0, 0); border-radius: 10px;">{{user.actif}}</p></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
