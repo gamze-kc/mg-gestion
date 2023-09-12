@@ -4,10 +4,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable, map } from 'rxjs';
 
 interface User {
-  role: any,
-  id : number,
+  id : number, 
+  matricule : number, 
+  prenom : string, 
   nom : string, 
-  prenom : string
+  mail :string,
+  actif: string, 
+  role : string
 }
 
 @Injectable({
