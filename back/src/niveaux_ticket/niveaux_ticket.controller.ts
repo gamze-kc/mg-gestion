@@ -151,7 +151,7 @@ export class NiveauxTicketController {
         'Erreur lors de la récuperation de la catégorie ' + error.message,
         500,
 
-      );
+      )
     }
   }
 }

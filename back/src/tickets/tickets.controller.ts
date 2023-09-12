@@ -4,6 +4,7 @@ import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { ApiOperation, ApiResponse, ApiTags, ApiBody, ApiParam } from '@nestjs/swagger';
 import { TicketEntity } from 'src/entities/ticket.entity';
+import { NiveauTicketEnum } from 'src/enums/niveau-ticket';
 
 @ApiTags('APIs concernants la gestion des tickets')
 @Controller('tickets')
@@ -39,23 +40,21 @@ export class TicketsController {
           example: 'Mon ecran actuelle a quelques soucis, donc j\'aimerai savoir s\'il est possible d\'en avoir un nouveau',
           description: 'description de la demande'
         },
-        categorie: {
-          type: 'string',
-          example: 'materiel ',
+        id_categorie: {
+          type: 'number',
+          example: 1,
           description: 'catégorie du ticket'
         },
-        type: {
-          type: 'string',
-          example: 'demande',
+        id_type: {
+          type: 'number',
+          example: 1,
           description: 'type du ticket '
         },
         piece_jointe: {
           type: 'string',
           example: 'inserer_exemple_piece_jointe',
-          description: 'piece jointe rattaché au tikcet'
-        },
-
-
+          description: 'piece jointe rattaché au ticket'
+        } 
       }
     }
   })
@@ -83,9 +82,7 @@ export class TicketsController {
         'Erreur lors de la création du ticket : ' + error.message,
         500,
       );
-
     }
-
   }
 
 
@@ -115,7 +112,7 @@ export class TicketsController {
   }
 
 
-  @ApiOperation({ summary: 'Api qui permet d\'avoir les details d\'un ticket depuis son id' })
+  @ApiOperation({ summary: 'Api qui permet d\'avoir les details d\'un ticket depuis son id et les commentaires qui va avec' })
   @ApiResponse({
     status: 201,
     description: 'Ticket retourné '

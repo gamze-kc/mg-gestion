@@ -1,4 +1,4 @@
-export enum TicketEtatEnum{
+export enum EtatTicketEnum{
 
    NOUVEAU = "NOUVEAU",
    ASSIGNE = "ASSIGNE",

@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TicketEntity } from "./ticket.entity";
-import { UserRole } from "src/enums/role-user.enum";
+import { UserRoleEnum } from "src/enums/role-user.enum";
 import { CommentaireEntity } from "./commentaire.entity";
 
 @Entity('user')
@@ -26,8 +26,8 @@ export class UserEntity{
 
     @Column({
         type: 'enum',
-        enum: UserRole,
-        default: UserRole.USER
+        enum: UserRoleEnum,
+        default: UserRoleEnum.USER
     })
     role : string;
 
