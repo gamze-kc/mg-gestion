@@ -1,9 +1,13 @@
+<div class="fond"></div>
+<div class="voile"></div>
+
 <div class="conteneur">
+    <img style="position:absolute;" class="logo" src="\assets\logo.perrault.png"/>
     <div class="div_gauche">
-        <img style="position:absolute;" src="\assets\logo.perrault.png"/>
+        
         <h3>Espace de connexion</h3>
         <div class="form_div">
-            <label>Mon profil : </label>
+            <label>Choisissez votre profil : </label>
             <select placeholder="Saisir nom d'utilisateur" [(ngModel)]="selectedUser">
                 <option *ngFor="let user of users" [ngValue]="user">{{user.prenom}} {{user.nom}}</option>
             </select>
@@ -19,7 +23,7 @@
 </div>
 
 
-<p-dialog header="Entrer le mot de passe administrateur" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-    <input type="password" [(ngModel)]="adminPassword">
-    <button (click)="validation()">Verifier</button>
+<p-dialog header="Entrer le mot de passe administrateur" [(visible)]="visible" [modal]="true" [style]="{ width: '500px' }" [draggable]="false" [resizable]="false">
+    <input class="pwdAdmin" type="password" [(ngModel)]="adminPassword">
+    <button class="btnPwd" (click)="validation()">Verifier</button>
 </p-dialog>
