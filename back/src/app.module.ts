@@ -14,6 +14,7 @@ import { CategoriesTicketModule } from './categories_ticket/categories_ticket.mo
 import { CategorieTicketEntity } from './entities/categorie_ticket.entity';
 import { NiveauxTicketModule } from './niveaux_ticket/niveaux_ticket.module';
 import { NiveauTicketEntity } from './entities/niveau_ticket.entity';
+import { MessagesModule } from './messages/messages.module';
 
 
 @Module({
@@ -34,6 +35,7 @@ import { NiveauTicketEntity } from './entities/niveau_ticket.entity';
     TypesTicketModule,
     CategoriesTicketModule,
     NiveauxTicketModule,
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
