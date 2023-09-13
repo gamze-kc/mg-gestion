@@ -8,11 +8,11 @@
             <td style="width: 400px;"> Afficher les tickets sur la période :</td>
         </tr>
         <tr>
-            <td><p-dropdown [style]="{'height':'25px' }" [options]="categorie" [(ngModel)]="selectedCategorie"
-                    placeholder="Choisir une catégorie" [editable]="true" optionLabel="nom"></p-dropdown></td>
+            <td><p-dropdown [style]="{'height':'25px' }" [options]="categories" optionLabel="libelle" [(ngModel)]="selectedCategorie"
+                    placeholder="Choisir une catégorie" [editable]="true"></p-dropdown></td>
             <td></td>
             <td><p-dropdown [style]="{'height':'25px' }" [options]="types" [(ngModel)]="selectedType"
-                    placeholder="Choisir une catégorie" [editable]="true" optionLabel="nom"></p-dropdown></td>
+                    placeholder="Choisir un Type" [editable]="true" optionLabel="libelle"></p-dropdown></td>
             <td></td>
             <td>De <p-calendar [style]="{'height':'25px' , 'width':'100px'}" [(ngModel)]="dateDebut"></p-calendar> à
                 <p-calendar [style]="{'height':'25px', 'width':'100px'}" [(ngModel)]="dateFin"></p-calendar></td>
@@ -30,7 +30,7 @@
         </tr>
 
     </table>
-    <div class="conteneur_new">
+    <div *ngIf="!isAdmin" class="conteneur_new">
         <button (click)="showDialog()" class="btn_newTicket">+ Nouveau Ticket</button>
     </div>
 
@@ -56,10 +56,10 @@
             </tr>
             <tr>
                 <td>
-                    <p-dropdown [options]="categorie" [(ngModel)]="selectedCategorieNew" optionLabel="nom"></p-dropdown>
+                    <p-dropdown [options]="categories" [(ngModel)]="selectedCategorieNew" optionLabel="libelle"></p-dropdown>
                 </td>
                 <td></td>
-                <td><p-dropdown [options]="types" [(ngModel)]="selectedTypeNew" optionLabel="nom"></p-dropdown>
+                <td><p-dropdown [options]="types" [(ngModel)]="selectedTypeNew" optionLabel="libelle"></p-dropdown>
                 </td>
             </tr>
         </table>
@@ -77,7 +77,7 @@
 
 
 
-        <div style="margin-top: 25px; display: flex; justify-content: flex-end;"><p-button icon="pi pi-send"
+        <div style="margin-top: 25px; display: flex; justify-content: flex-end;"><p-button (click)="creerTicket()" icon="pi pi-send"
                 label="Envoyer"></p-button></div>
     </p-dialog>
 </div>

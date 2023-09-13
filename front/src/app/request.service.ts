@@ -26,6 +26,17 @@ interface Ticket {
   id: 1
 }
 
+interface Categorie {
+  id : number, 
+  libelle : string, 
+  actif : string
+}
+
+interface Type {
+  id : number, 
+  libelle : string, 
+  actif : string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +48,26 @@ export class RequestService {
 
   AllUsers(): Observable<User[]> {
     const apiUrl = 'http://localhost:3000/users';
+    return this.http.get(apiUrl).pipe(
+      map((data: any) => {
+        // Transformez les données de l'API en un tableau d'objets User
+        return data;
+      })
+    );
+  }
+
+  AllCategories(): Observable<Categorie[]> {
+    const apiUrl = 'http://localhost:3000/categories-ticket';
+    return this.http.get(apiUrl).pipe(
+      map((data: any) => {
+        // Transformez les données de l'API en un tableau d'objets User
+        return data;
+      })
+    );
+  }
+
+  AllTypes(): Observable<Type[]> {
+    const apiUrl = 'http://localhost:3000/types-ticket';
     return this.http.get(apiUrl).pipe(
       map((data: any) => {
         // Transformez les données de l'API en un tableau d'objets User
