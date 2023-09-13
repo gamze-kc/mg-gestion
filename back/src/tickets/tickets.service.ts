@@ -61,7 +61,7 @@ export class TicketsService {
       return await this.ticketRepository.findOne({where:{
         id,
       }, 
-      relations: ['commentaires'],
+      relations: ['commentaires','commentaires.id_proprietaire'],
       });
     }
     catch (error) {
