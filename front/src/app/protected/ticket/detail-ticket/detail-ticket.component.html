@@ -49,7 +49,7 @@
         <div *ngFor="let commentaire of ticket?.commentaires">
 
        
-        <div class="commentaire recu" *ngIf="commentaire?.id_proprietaire != idConnectedUser">
+        <div class="commentaire recu" *ngIf="commentaire?.id_proprietaire?.id != idConnectedUser">
             <table style="width: 100%;">
 
                 <tr>
@@ -66,7 +66,7 @@
             </table>
 
         </div>
-        <div class="commentaire envoye" *ngIf="commentaire?.id_proprietaire == idConnectedUser">
+        <div class="commentaire envoye" *ngIf="commentaire?.id_proprietaire?.id == idConnectedUser">
             <table style="width: 100%;">
                 <tr>
                     <td>{{commentaire?.texte}}</td>

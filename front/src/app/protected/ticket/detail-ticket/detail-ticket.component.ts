@@ -23,7 +23,7 @@ interface Commentaire {
   date : Date,
   texte : string,
   piece_jointe: string,
-  id_proprietaire : number,
+  id_proprietaire : User,
 }
 
 interface User {

@@ -27,13 +27,15 @@ interface Ticket {
   commentaires : undefined | Commentaire[]
 }
 
+
 interface Commentaire {
   id: number,
   date : Date,
   texte : string,
   piece_jointe: string,
-  id_proprietaire : number,
+  id_proprietaire : User,
 }
+
 
 interface Categorie {
   id : number, 
