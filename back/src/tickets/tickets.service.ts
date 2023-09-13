@@ -81,7 +81,7 @@ export class TicketsService {
   async getTousLesTickets(): Promise<TicketEntity[]> {
 
     try {
-      return this.ticketRepository.find();
+      return await this.ticketRepository.find();
     }
     catch (error) {
       // Si l'erreur est une instance de HttpException, la renvoyer directement
@@ -97,6 +97,40 @@ export class TicketsService {
     }
   }
 
+
+
+   
+  async getTousLesTicketsUser(idProprietaire : number ) : Promise<TicketEntity[]|Error> {
+    try {
+      
+      const user = await this.userRepository.findOneBy({id: idProprietaire});
+      if(user)
+      {
+        return await this.ticketRepository.find({where: { id_proprietaire: idProprietaire }});
+      }
+      else{
+        throw new HttpException(
+          'Aucun utilisateur possède cet ID' ,
+          500,
+        );
+      }
+     
+      //return await this.userRepository.find({where: {entreprise: { id: idEntreprise }},relations: ['entreprise'],});
+    }
+    catch (error) {
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la récupération de tous les tickets de l\'utilisateur :  ' + error.message,
+        500,
+      );
+    }
+
+  }
 
 
 }

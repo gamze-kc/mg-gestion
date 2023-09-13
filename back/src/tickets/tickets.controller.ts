@@ -111,6 +111,41 @@ export class TicketsController {
 
   }
 
+  
+  @ApiOperation({ summary: 'Api qui permet de retourner tous les tickets avec les commentaires, du user connecté' })
+  @ApiResponse({
+    status: 201,
+    description: 'Tickets retournés'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @ApiParam({
+    name : 'idUser',
+    description : 'Id de l\'utilisateur connecté',
+    example : 1
+  })
+  @Get('user/:id')
+  async getTousLesTicketsUser(
+    @Param('idUser') idUser : number
+  ) : Promise<TicketEntity[]| Error> {
+    try
+    {
+      return this.ticketsService.getTousLesTicketsUser(idUser);
+    }
+    catch (error) {
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+    }
+
+  }
+
+
+
+
 
   @ApiOperation({ summary: 'Api qui permet d\'avoir les details d\'un ticket depuis son id et les commentaires qui va avec' })
   @ApiResponse({
@@ -144,6 +179,9 @@ export class TicketsController {
       }
     }
   }
+
+  
+
 
 
   
