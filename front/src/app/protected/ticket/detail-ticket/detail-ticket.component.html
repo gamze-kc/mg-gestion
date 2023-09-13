@@ -1,12 +1,15 @@
 <div class="conteneur_detail">
     <table class="ticket">
         <tr>
-            <td style="padding-left: 5px; padding-top: 5px;" class="ticket_title">Demande materiel</td>
-            <td class="date">03/09/2023</td>
+            <td style="padding-left: 5px; padding-top: 5px;" class="ticket_title">{{ticket?.objet}}</td>
+            <td class="date">{{ticket?.date_creation | date : 'dd/MM/YYYY'}}</td>
         </tr>
 
         <tr>
-            <td class="id" style="padding-left: 5px;" colspan="2">2356345345</td>
+            <td class="id" style="padding-left: 5px;" colspan="2">id : {{ticket?.id}}</td>
+        </tr>
+        <tr>
+            <td class="id" style="padding-left: 5px;" colspan="2">Par : Mathias LORET</td>
         </tr>
         <tr style="height: 5px;">
             <td colspan="2" style="padding-left: 5px;"></td>
@@ -21,91 +24,54 @@
             <td colspan="2" style="font-size: 0.9em;padding-left: 5px;">Attribué à : Francoos LORET </td>
         </tr>
         <tr style="text-align: end;">
-            <td colspan="2" style="padding-right: 5px;"><i class="pi pi-circle-fill"
-                    style=" font-size:0.8em;color:green"></i> En cours</td>
+            <td colspan="2" style="padding-right: 5px;">
+                <i *ngIf="ticket?.etat == 'NOUVEAU'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(0, 62, 231)"></i>
+                <i *ngIf="ticket?.etat == 'ASSIGNE'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(173, 0, 216)"></i>
+                <i *ngIf="ticket?.etat == 'EN COURS'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(235, 199, 0)"></i>
+                <i *ngIf="ticket?.etat == 'EN ATTENTE'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(165, 165, 165)"></i>
+                <i *ngIf="ticket?.etat == 'RESOLUT'" class="pi pi-circle-fill" style=" font-size:0.8em;color:green"></i>
+                {{ticket?.etat | lowercase}}
+            
+            </td>
+        </tr>
+        <tr style="height: 5px;">
+            <td colspan="2"></td>
+        </tr>
+        <tr style="height: 200px; background-color: rgb(223, 223, 223);color:blue; overflow-y: scroll;">
+            <td colspan="2" style="vertical-align: top; font-size: 0.9em;padding: 15px;"><b>Description :</b> <br/>{{ticket?.description}}</td>
+        </tr>
+        <tr style="height: 15px;">
+            <td colspan="2"></td>
         </tr>
     </table>
 
     <div class="conteneur_commentaire">
-        <div class="commentaire recu">
+        <div *ngFor="let commentaire of ticket?.commentaires">
+
+       
+        <div class="commentaire recu" *ngIf="commentaire?.id_proprietaire != idConnectedUser">
             <table style="width: 100%;">
 
                 <tr>
                     <td style="width:200px; vertical-align: top; ">
-                        <h3 style="margin:0px; margin-top: 15px;padding-left: 15px;">Francois LORET</h3>
+                        <h3 style="margin:0px; margin-top: 15px;padding-left: 15px;">{{commentaire?.id_proprietaire}}=={{idConnectedUser}}</h3>
                         <p style="margin:0px; padding-left: 15px;">04/06/2023</p>
                         <hr />
                         <div style="margin-left: 15px;"><a href="#">piece jointe</a></div>
                     </td>
-                    <td>Ceci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalall
-
-                    </td>
+                    <td>{{commentaire?.texte}}</td>
 
                 </tr>
 
             </table>
 
         </div>
-        <div class="commentaire envoye">
+        <div class="commentaire envoye" *ngIf="commentaire?.id_proprietaire == idConnectedUser">
             <table style="width: 100%;">
                 <tr>
-                    <td>Ceci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci
-                        est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire
-                        lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon
-                        commentaire lalalalallCeci est mon commentaire lalalalallCeci est mon commentaire lalalalall
-
-                    </td>
+                    <td>{{commentaire?.texte}}</td>
                     <td style="width:200px; vertical-align: top; text-align: end; ">
-                        <h3 style="margin:0px; margin-top: 15px;padding-right: 15px;">Francois LORET</h3>
+                        <h3 style="margin:0px; margin-top: 15px;padding-right: 15px;">{{commentaire?.id_proprietaire}}=={{idConnectedUser}}</h3>
                         <p style="margin:0px; padding-right: 15px;">04/06/2023</p>
                         <hr />
                         <div style="margin-right: 15px;"><a href="#">piece jointe</a></div>
@@ -114,6 +80,7 @@
 
             </table>
         </div>
+    </div>
     </div>
     <div class="form_new_com">
         <button (click)="showDialog()">+ Nouveau commentaire</button>

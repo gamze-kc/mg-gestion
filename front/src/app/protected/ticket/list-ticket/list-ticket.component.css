@@ -1,6 +1,6 @@
 .conteneur_ticket{
     height: 100%;
-    display: flex;
+    display:flexbox;
     justify-content: flex-start;
     flex-wrap: wrap;
     overflow-y: scroll;

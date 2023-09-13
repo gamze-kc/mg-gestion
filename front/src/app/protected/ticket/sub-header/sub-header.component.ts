@@ -66,7 +66,7 @@ showDialog() {
 }
 
 Filtre() {
-  this.messageService.add({ severity: 'info', summary: 'La liste à été filtré', detail: '' });
+  //remplir la lsite filtre ( qui est a créer) 
 }
 
 reloadFiltre() {
