@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateTypesTicketDto } from './dto/create-types_ticket.dto';
 import { UpdateTypesTicketDto } from './dto/update-types_ticket.dto';
 import { TypeTicketEntity } from 'src/entities/type_ticket.entity';
@@ -27,7 +27,16 @@ export class TypesTicketService {
       const newType = await this.typeTicketRpository.save({ ...type });
       return newType;
     } catch (error) {
-      return error;
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la création du type:  ' + error.message,
+        500,
+      );
     }
   }
 
@@ -37,7 +46,16 @@ export class TypesTicketService {
 
     }
     catch (error) {
-      return error;
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la récupération du type :  ' + error.message,
+        500,
+      );
     }
   }
 
@@ -45,7 +63,16 @@ export class TypesTicketService {
     try {
       return await this.typeTicketRpository.findOneBy({ id: id });
     } catch (error) {
-      return error;
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la récupération du type :  ' + error.message,
+        500,
+      );
     }
   }
 
@@ -60,7 +87,16 @@ export class TypesTicketService {
       return newType;
 
     } catch (error) {
-      return error;
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la modification du ticket :  ' + error.message,
+        500,
+      );
     }
 
   }

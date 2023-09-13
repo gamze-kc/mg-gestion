@@ -18,6 +18,13 @@ export class CategorieTicketEntity{
     })
     actif : string;
 
+    @Column({nullable: true, default : 'white'})
+    couleur : string;
+
+    @Column({nullable: true, default : 'pi-circle-on'})
+    icone : string;
+
+
     @OneToMany(() => TicketEntity, (ticket) => ticket.id, {nullable:false})
     tickets : TicketEntity[];
     

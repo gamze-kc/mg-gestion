@@ -7,7 +7,7 @@ import { UserEntity } from 'src/entities/user.entity';
 import { CommentaireEntity } from 'src/entities/commentaire.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CommentaireEntity, UserEntity])],
+  imports: [TypeOrmModule.forFeature([CommentaireEntity, UserEntity,TicketEntity])],
   controllers: [CommentairesController],
   providers: [CommentairesService],
   exports: [CommentairesService]

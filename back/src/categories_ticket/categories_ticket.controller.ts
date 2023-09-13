@@ -4,6 +4,7 @@ import { CreateCategoriesTicketDto } from './dto/create-categories_ticket.dto';
 import { UpdateCategoriesTicketDto } from './dto/update-categories_ticket.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 import { CategorieTicketEntity } from 'src/entities/categorie_ticket.entity';
+import { UserRoleEnum } from 'src/enums/role-user.enum';
 
 @ApiTags('APIs concernants la gestion des CATEGORIES de Tickets')
 @Controller('categories-ticket')
@@ -26,6 +27,16 @@ export class CategoriesTicketController {
           type: 'string',
           example: 'Materiel',
           description: 'libelle de la nouvelle catégorie'
+        },
+        couleur: {
+          type: 'string',
+          example: 'blue',
+          description: 'couleur de la nouvelle catégorie'
+        },
+        icone: {
+          type: 'string',
+          example: 'pi-circle-on',
+          description: 'icone de la nouvelle catégorie'
         }
       }
     }
@@ -37,9 +48,16 @@ export class CategoriesTicketController {
       return await this.categoriesTicketService.create(createCategoriesTicketDto);
 
     } catch (error) {
-      if (error instanceof HttpException) {
+       // Si l'erreur est une instance de HttpException, la renvoyer directement
+       if (error instanceof HttpException) {
         throw error;
       }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la création de la catégorie :  ' + error.message,
+        500,
+      );
     }
   }
 
@@ -125,7 +143,7 @@ export class CategoriesTicketController {
   @Put('update_statut')
   updateActif(@Body() updateCategoriesTicketDto: UpdateCategoriesTicketDto) {
     try{
-      return this.categoriesTicketService.updateActif(updateCategoriesTicketDto);
+      return this.categoriesTicketService.update(updateCategoriesTicketDto);
     }catch(error)
     {
       // Si l'erreur est une instance de HttpException, la renvoyer directement
@@ -143,3 +161,4 @@ export class CategoriesTicketController {
   }
 
 }
+

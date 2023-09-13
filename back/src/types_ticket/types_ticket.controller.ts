@@ -53,12 +53,10 @@ export class TypesTicketController {
   }
 
 
-  
-
-  @ApiOperation({ summary: 'Api qui permet de récupérer une catégorie depuis son ID' })
+  @ApiOperation({ summary: 'Api qui permet de récupérer un types depuis son ID' })
   @ApiResponse({
     status: 201,
-    description: 'Catégorie récupérée'
+    description: 'Type récupéré'
   })
   @ApiResponse({
     status: 400,

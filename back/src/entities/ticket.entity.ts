@@ -1,10 +1,11 @@
 import { EtatTicketEnum } from "src/enums/etat-ticket.enum";
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "./user.entity";
 import { TypeTicketEntity } from "./type_ticket.entity";
 import { CategorieTicketEntity } from "./categorie_ticket.entity";
 import { NiveauTicketEntity } from "./niveau_ticket.entity";
 import { NiveauTicketEnum } from "src/enums/niveau-ticket";
+import { CommentaireEntity } from "./commentaire.entity";
 
 @Entity('ticket')
 export class TicketEntity{
@@ -48,6 +49,9 @@ export class TicketEntity{
 
     @ManyToOne(() => CategorieTicketEntity, (ticket) => ticket.id, {nullable:false})
     id_categorie_ticket : number;
+
+    @OneToMany(() => CommentaireEntity, (commentaire) => commentaire.ticket, {nullable:true})
+    commentaires : CommentaireEntity[];
 
     // @ManyToOne(() => NiveauTicketEntity, (ticket) => ticket.id, {nullable:false})
     // id_niveau_ticket : number;

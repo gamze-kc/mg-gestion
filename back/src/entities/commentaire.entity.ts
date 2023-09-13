@@ -17,7 +17,7 @@ export class CommentaireEntity{
     piece_jointe: string;
 
     @ManyToOne(() => TicketEntity, (ticket) => ticket.id, {nullable:false})
-    id_ticket : number;
+    ticket : TicketEntity;
 
     @ManyToOne(() => UserEntity, (user) => user.id, {nullable:false})
     id_proprietaire : number;

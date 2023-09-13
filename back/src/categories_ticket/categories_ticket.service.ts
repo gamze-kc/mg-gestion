@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateCategoriesTicketDto } from './dto/create-categories_ticket.dto';
 import { UpdateCategoriesTicketDto } from './dto/update-categories_ticket.dto';
 import { CategorieTicketEntity } from 'src/entities/categorie_ticket.entity';
@@ -22,6 +22,9 @@ export class CategoriesTicketService {
       let categorie = new CategorieTicketEntity();
       categorie.libelle = categorieData.libelle;
       categorie.actif = ActifEnum.ACTIF;
+      categorie.couleur = categorieData.couleur;
+      categorie.icone = categorieData.icone;
+
     
       const newCategorie = await this.categorieTicketRpository.save({...categorie});
  
@@ -29,7 +32,17 @@ export class CategoriesTicketService {
       return newCategorie;
     }catch(error)
     {
-      return error;
+    
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la création de la catégorie :  ' + error.message,
+        500,
+      );
     }
   }
 
@@ -47,24 +60,44 @@ export class CategoriesTicketService {
 
     }catch(error)
     {
-      return error;
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la récupération des catégories :  ' + error.message,
+        500,
+      );
     }
   }
 
 
-  async updateActif(categorieData : UpdateCategoriesTicketDto)  :Promise<CategorieTicketEntity> {
+  async update(categorieData : UpdateCategoriesTicketDto)  :Promise<CategorieTicketEntity> {
     
     try{
 
-      const type = await this.categorieTicketRpository.findOneBy({id : categorieData.id});
-      type.actif = categorieData.actif;
+      const categorie = await this.categorieTicketRpository.findOneBy({id : categorieData.id});
+      categorie.actif = categorieData.actif;
+      categorie.couleur = categorieData.couleur;
+      categorie.icone = categorieData.icone;
 
-      const newCategorie = await this.categorieTicketRpository.save(type);
+      const newCategorie = await this.categorieTicketRpository.save(categorie);
       return newCategorie;
 
     }catch(error)
     {
-      return error;
+      // Si l'erreur est une instance de HttpException, la renvoyer directement
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la mise à jour de la categorie :  ' + error.message,
+        500,
+      );
     }
 
   }
