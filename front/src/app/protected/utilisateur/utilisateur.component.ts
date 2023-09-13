@@ -27,14 +27,6 @@ export class UtilisateurComponent implements OnInit{
     this.requestService.AllUsers().subscribe((result) => {
       result.forEach((user)=>this.users.push(user))
     });
-
-    this.requestService.AllUsers().subscribe((result) => {
-      result.forEach((user)=>this.users.push(user))
-    });
-
-    this.requestService.AllUsers().subscribe((result) => {
-      result.forEach((user)=>this.users.push(user))
-    });
   }
   
 }

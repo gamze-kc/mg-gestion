@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { RequestService } from 'app/request.service';
+import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 
-interface Catégorie {
-  id: number;
-  nom: string;
+interface Categorie {
+  id : number, 
+  libelle : string, 
+  actif : string
 }
 
-
 interface Type {
-  id: number;
-  nom: string;
+  id : number, 
+  libelle : string, 
+  actif : string
 }
 
 
@@ -21,33 +24,42 @@ interface Type {
 })
 export class SubHeaderComponent   implements OnInit   {
   visible: boolean = false;
-  categorie: Catégorie[] | undefined;
-  types: Type[] | undefined;
+  categories: Categorie[] = [] ;
+  types: Type[]= [];
   dateDebut: Date | undefined;
   dateFin: Date | undefined;
-  selectedCategorie: Catégorie | undefined;
+  selectedCategorie: Categorie | undefined;
   selectedType: Type | undefined;
-  selectedCategorieNew: Catégorie | undefined;
-  selectedTypeNew: Catégorie | undefined;
+  selectedCategorieNew: Categorie | undefined;
+  selectedTypeNew: Type | undefined;
   uploadedFiles: any[] = [];
+  isAdmin = false; 
 
 
-  constructor(private messageService: MessageService){}
+
+  constructor(private messageService: MessageService,
+    private cookieService :CookieService, 
+    private requestService : RequestService){}
 
   ngOnInit() {
-      this.categorie = [
-          { id: 1, nom: 'Materiel' },
-          { id: 2, nom: 'Logiciel' },
-          { id: 3, nom: 'Autre' }
-      ];
 
-      this.types = [
-        { id: 1, nom: 'Demande' },
-        { id: 2, nom: 'Incident' },
-        { id: 3, nom: 'Information' },
-        { id: 4, nom: 'Résolu' },
-        { id: 5, nom: 'Rejeté' }
-    ];
+
+      this.requestService.AllCategories().subscribe((result)=>{
+        result.forEach((categorie) =>{
+          this.categories?.push(categorie)
+        })
+      })
+
+      this.requestService.AllTypes().subscribe((result)=>{
+        result.forEach((type) =>{
+          this.types?.push(type)
+        })
+      })
+
+    if(this.cookieService.get('Role') == 'ADMIN'){
+      this.isAdmin = true;
+    }
+
   }
 showDialog() {
     this.visible = true;
@@ -72,5 +84,9 @@ onUpload(event: any) {
   }
 
   this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
+}
+
+creerTicket(){
+  
 }
 }

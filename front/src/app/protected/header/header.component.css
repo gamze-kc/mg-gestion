@@ -1,5 +1,6 @@
 .header{
-    background-color: #124072;
+    background: rgb(18,64,114);
+background: linear-gradient(112deg, rgba(18,64,114,1) 0%, rgba(18,100,114,0.9187935034802784) 89%);
     width:100%; 
     height: 50px;
     box-shadow: 0px 0px 15px rgb(185, 185, 185);
@@ -9,8 +10,10 @@
 
 .logo_ap{
     height:40px;
+    width:40px;
     padding-left: 5px;
     padding-top: 5px;
+    border-radius: 30px;
 }
 
 
@@ -25,6 +28,7 @@
 
 }
 
+
 .title{
     font-weight: 400;
     padding: 0px;
@@ -36,7 +40,7 @@
 }
 
 .btn_user{
-    background-color: #124072;
+    background-color: #12407200;
     margin: 0px;
     padding: 0px;
     color:white;

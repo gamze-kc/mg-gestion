@@ -7,10 +7,13 @@ import { MessageService } from 'primeng/api';
 
 
 interface User {
-  role: any;
-  id: number,
-  nom: string,
-  prenom: string
+  id : number, 
+  matricule : number, 
+  prenom : string, 
+  nom : string, 
+  mail :string,
+  actif: string, 
+  role : string
 }
 @Component({
   selector: 'app-auth',

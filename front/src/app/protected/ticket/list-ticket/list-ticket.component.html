@@ -1,31 +1,38 @@
 <div class="conteneur_ticket">
 
-    <table class="ticket" *ngFor="let ticket of fakeArray">
+    <table class="ticket" *ngFor="let ticket of tickets">
         <tr >
             <td rowspan="8" style="width: 25px; text-align: center;  background-color: rgb(172, 172, 255);">
                 <span class="pi pi-desktop" style="color:white;"></span>
             </td>
         </tr>
         <tr >
-            <td style="padding-left: 5px; padding-top: 5px;" class="ticket_title">Demande materiel</td>
-            <td class="date">03/09/2023</td>
+            <td style="padding-left: 5px; padding-top: 5px;" class="ticket_title">{{ticket.objet}}</td>
+            <td class="date">{{ticket.date_creation | date:"dd/MM/YYYY"}}</td>
         </tr>
         
         <tr>
-            <td class="id" style="padding-left: 5px;" colspan="2">2356345345</td>
+            <td class="id" style="padding-left: 5px;" colspan="2">id : {{ticket.id}}</td>
         </tr>
         <tr style="height: 5px;">
             <td colspan="2" style="padding-left: 5px;"></td>
         </tr>
         <tr>
-            <td colspan="2" style="padding-left: 5px;">Catégorie</td>
+            <td colspan="2" style="padding-left: 5px;">{{ticket.categorie}}</td>
         </tr>
         <tr style="height: 5px;"><td colspan="2"></td></tr>
         <tr>
         <td colspan="2" style="font-size: 0.9em;padding-left: 5px;">Attribué à :  Francoos LORET </td>
         </tr>
         <tr style="text-align: end;">
-            <td colspan="2" style="padding-right: 5px;"><i class="pi pi-circle-fill" style=" font-size:0.8em;color:green"></i> En cours</td>
+            <td colspan="2" style="padding-right: 5px;">
+                <i *ngIf="ticket.etat == 'NOUVEAU'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(0, 62, 231)"></i>
+                <i *ngIf="ticket.etat == 'ASSIGNE'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(173, 0, 216)"></i>
+                <i *ngIf="ticket.etat == 'EN COURS'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(235, 199, 0)"></i>
+                <i *ngIf="ticket.etat == 'EN ATTENTE'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(165, 165, 165)"></i>
+                <i *ngIf="ticket.etat == 'RESOLUT'" class="pi pi-circle-fill" style=" font-size:0.8em;color:green"></i>
+                {{ticket.etat}}
+            </td>
         </tr>
     </table>
 </div>

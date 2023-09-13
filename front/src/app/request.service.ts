@@ -13,6 +13,31 @@ interface User {
   role : string
 }
 
+interface Ticket {
+  id_proprietaire: 1,
+  date_creation: Date,
+  objet: string,
+  description: string,
+  categorie: string,
+  type: string,
+  piece_jointe: string,
+  etat: string,
+  id_user_support : null | User,
+  id: 1
+}
+
+interface Categorie {
+  id : number, 
+  libelle : string, 
+  actif : string
+}
+
+interface Type {
+  id : number, 
+  libelle : string, 
+  actif : string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,8 +56,38 @@ export class RequestService {
     );
   }
 
+  AllCategories(): Observable<Categorie[]> {
+    const apiUrl = 'http://localhost:3000/categories-ticket';
+    return this.http.get(apiUrl).pipe(
+      map((data: any) => {
+        // Transformez les données de l'API en un tableau d'objets User
+        return data;
+      })
+    );
+  }
+
+  AllTypes(): Observable<Type[]> {
+    const apiUrl = 'http://localhost:3000/types-ticket';
+    return this.http.get(apiUrl).pipe(
+      map((data: any) => {
+        // Transformez les données de l'API en un tableau d'objets User
+        return data;
+      })
+    );
+  }
+
   OneUser(id: number): Observable<User> {
     const apiUrl = 'http://localhost:3000/users/'+id;
+    return this.http.get(apiUrl).pipe(
+      map((data: any) => {
+        // Transformez les données de l'API en un tableau d'objets User
+        return data[0];
+      })
+    );
+  }
+
+  getTickets(): Observable<Ticket[]> {
+    const apiUrl = 'http://localhost:3000/tickets';
     return this.http.get(apiUrl).pipe(
       map((data: any) => {
         // Transformez les données de l'API en un tableau d'objets User

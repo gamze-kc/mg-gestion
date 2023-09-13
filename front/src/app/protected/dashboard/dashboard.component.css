@@ -1,13 +1,12 @@
 .title{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(216, 236, 255);
     font-size: 1.7em;
     font-weight: 600;
     color:#124072;
     margin-inline: 25px;
     padding:5px;
-    padding-left: 25px;
-    border-radius: 5px;
+    border-bottom-style: solid;
+
 
 }
 
@@ -99,7 +98,7 @@ button:hover{
     margin-right:50px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 
