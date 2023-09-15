@@ -90,7 +90,7 @@ export class NiveauxTicketController {
     example: 1
   })
   @Get('niveau/:idNiveau')
-  findOne(@Param('idNiveau') idNiveau: number): Promise<NiveauTicketEntity|Error>{
+  async findOne(@Param('idNiveau') idNiveau: number): Promise<NiveauTicketEntity|Error>{
     try{
 
       return this.niveauxTicketService.getNiveau(idNiveau);
@@ -136,7 +136,7 @@ export class NiveauxTicketController {
     }
   })
   @Put('update_statut')
-  updateActif(@Body() updateNiveauTicketDto: UpdateNiveauxTicketDto) {
+  async updateActif(@Body() updateNiveauTicketDto: UpdateNiveauxTicketDto) {
     try{
       return this.niveauxTicketService.updateActif(updateNiveauTicketDto);
     }catch(error)

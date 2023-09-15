@@ -91,6 +91,7 @@ export class CategoriesTicketController {
   })
   @ApiParam({
     name: 'idCategorie',
+    type : 'number',
     description: "L'ID de la categorie",
     example: 2
   })

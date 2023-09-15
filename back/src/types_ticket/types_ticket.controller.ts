@@ -53,7 +53,7 @@ export class TypesTicketController {
   }
 
 
-  @ApiOperation({ summary: 'Api qui permet de récupérer un types depuis son ID' })
+  @ApiOperation({ summary: 'Api qui permet de récupérer un types d\'un ticket depuis son ID' })
   @ApiResponse({
     status: 201,
     description: 'Type récupéré'
@@ -64,6 +64,7 @@ export class TypesTicketController {
   })
   @ApiParam({
     name: 'idType',
+    type : 'number',
     description: "L'ID du type",
     example: 2
   })

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, Put } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
@@ -146,7 +146,58 @@ export class TicketsController {
   }
 
 
+  @ApiOperation({ summary: 'Api qui permet d\'avoir les details d\'un ticket depuis son id et les commentaires qui va avec' })
+  @ApiResponse({
+    status: 201,
+    description: 'Ticket retourné '
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Requète incorrecte'
+  })
+  @ApiBody({
+    schema: {
+      properties: {
+        id: {
+          type: 'number',
+          example: 7,
+          description: 'id du type à modifier'
+        },
+        niveau: {
+          type: 'NiveauTicketEnum',
+          example: 'NIVEAU_2',
+          description: 'nouveau statut à assigner au type'
+        },
+        etat: {
+          type: 'EtatTicketEnum',
+          example: 'EN_COURS',
+          description: 'nouveau statut à assigner au type'
+        }
+      }
+    }
+  })
+  @Put('update')
+  async update(
+    @Body() updateTicketDto: UpdateTicketDto
+  ) :Promise <TicketEntity|Error>{
+    try{
+      return this.ticketsService.updateTicket(updateTicketDto);
+    }
+    catch (error) {
 
+       // Si l'erreur est une instance de HttpException, la renvoyer directement
+       if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la récuperation de la catégorie ' + error.message,
+        500,
+
+      )
+    }
+  }
 
 
   @ApiOperation({ summary: 'Api qui permet d\'avoir les details d\'un ticket depuis son id et les commentaires qui va avec' })
@@ -186,7 +237,7 @@ export class TicketsController {
   }
 
   
-
+  
 
 
   

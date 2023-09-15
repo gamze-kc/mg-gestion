@@ -37,7 +37,7 @@ export class UsersService {
 
   async findOne(id: number) : Promise<UserEntity|Error>{
     try{
-      console.log(id);
+      
       return await this.userRepository.findOneBy({id: id});
 
     }catch(error){
