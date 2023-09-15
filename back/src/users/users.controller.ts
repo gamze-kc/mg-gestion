@@ -21,8 +21,8 @@ export class UsersController {
     description : 'Requète incorrecte'
 })
 @Get()
-getAllUsers() {
-    return this.usersService.getAllUsers();
+async getAllUsers() {
+    return await this.usersService.getAllUsers();
 }
 
 
@@ -38,11 +38,14 @@ getAllUsers() {
 })
 @ApiParam({
   name : 'idUser',
-  description : 'Id de l\'utilisateur',
-  example : 1
+  type : 'number',
+  example : 1,
+  description : 'Id de l\'utilisateur'
 })
-  @Get(':id')
-  findOne(@Param('idUser') id: number) {
+  @Get('user/:idUser')
+  async findOne(@Param('idUser') id: number) {
+
+    console.log(id);
     return this.usersService.findOne(id);
   }
 

@@ -123,6 +123,7 @@ export class TicketsController {
   })
   @ApiParam({
     name : 'idUser',
+    type : 'number',
     description : 'Id de l\'utilisateur connecté',
     example : 1
   })
@@ -210,6 +211,7 @@ export class TicketsController {
   @ApiParam({
    
     name : 'idTicket',
+    type : 'number',
     description : 'Id du ticket',
     example : 1
   })
