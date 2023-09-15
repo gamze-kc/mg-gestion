@@ -21,7 +21,7 @@ export class MessagesService {
       message.objet = messageData.objet;
       message.corps_message = messageData.corps_message;
       message.date_creation = new Date();
-      console.log(message);
+     
       const newMessage = await this.messageRepository.save({...message})
    
       return newMessage;
@@ -40,8 +40,23 @@ export class MessagesService {
     }
   }
 
-  findAll() {
-    return `This action returns all messages`;
+  async retourneDernierMessage() : Promise<MessageEntity|Error>{
+    try{
+    return this.messageRepository.findOne({ order: { date_creation: 'DESC' }, where: {}, // Triez par date de manière décroissante
+    });
+
+    }catch(error){
+       // Si l'erreur est une instance de HttpException, la renvoyer directement
+       if (error instanceof HttpException) {
+        throw error;
+      }
+
+      // Si ce n'est pas une HttpException, renvoyer une HttpException avec un code 500 (Internal Server Error) et le message d'erreur
+      throw new HttpException(
+        'Erreur lors de la création du message : ' + error.message,
+        500,
+      );
+    }
   }
 
   findOne(id: number) {
