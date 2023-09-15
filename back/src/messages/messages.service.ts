@@ -59,13 +59,6 @@ export class MessagesService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} message`;
-  }
 
-  
 
-  remove(id: number) {
-    return `This action removes a #${id} message`;
-  }
 }

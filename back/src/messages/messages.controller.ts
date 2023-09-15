@@ -84,15 +84,4 @@ export class MessagesController {
     }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.messagesService.findOne(+id);
-  }
-
-
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.messagesService.remove(+id);
-  }
 }
