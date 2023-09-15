@@ -8,7 +8,9 @@ import { ParametreAppComponent } from './parametre-app/parametre-app.component';
 const routes: Routes = [
   { path : '', redirectTo : 'dashboard', pathMatch : 'full'}, 
   { path : 'dashboard', component : DashboardComponent, loadChildren : () => import('./dashboard/dashboard.module').then((m)=> m.DashboardModule)}, 
- { path : 'ticket', component : TicketComponent, loadChildren : () =>import('./ticket/ticket.module').then((m)=>m.TicketModule)},
+  { path : 'ticket', component : TicketComponent, loadChildren : () =>import('./ticket/ticket.module').then((m)=>m.TicketModule)},
+ { path : 'ticket/:idTicket', component : TicketComponent, loadChildren : () =>import('./ticket/ticket.module').then((m)=>m.TicketModule)},
+
  { path : 'utilisateur', component: UtilisateurComponent, loadChildren : () => import('./utilisateur/utilisateur.module').then((m)=> m.UtilisateurModule)}, 
  { path : 'paramsApp' , component : ParametreAppComponent, loadChildren : () => import('./parametre-app/parametre-app.module').then((m)=>m.ParametreAppModule)}
 ];

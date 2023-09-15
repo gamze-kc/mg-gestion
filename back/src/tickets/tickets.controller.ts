@@ -122,7 +122,9 @@ export class TicketsController {
     description: 'Requète incorrecte'
   })
   @ApiParam({
+    
     name : 'idUser',
+    type : 'number',
     description : 'Id de l\'utilisateur connecté',
     example : 1
   })
@@ -157,19 +159,22 @@ export class TicketsController {
     description: 'Requète incorrecte'
   })
   @ApiParam({
-   
+
     name : 'idTicket',
+    type : 'number',
     description : 'Id du ticket',
     example : 1
   })
 
-  @Get(':id')
+  @Get(':idTicket')
   async getTicketParId(
     @Param('idTicket') idTicket : number 
   ) : Promise<TicketEntity| Error> {
    {
+    console.log(idTicket)
     try {
-      const ticket = await this.ticketsService.getTicketParId(idTicket)
+      const ticket = await this.ticketsService.getTicketParId(+idTicket)
+
       return ticket;
 
     } catch (error) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RequestService } from 'app/request.service';
 import { CookieService } from 'ngx-cookie-service';
 interface Ticket {
@@ -46,7 +47,8 @@ export class ListTicketComponent implements OnInit {
 
   constructor(
     private cookieService: CookieService,
-    private requestService: RequestService
+    private requestService: RequestService, 
+    private router : Router
   ) { }
 
 
@@ -66,4 +68,8 @@ export class ListTicketComponent implements OnInit {
     })
   }
 }
+redirectTo(idTicket: number){
+  this.router.navigate(['protected/ticket/'+idTicket])
+}
+
 }

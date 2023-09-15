@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'app/request.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
-import { UploadEvent } from 'primeng/fileupload';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Ticket {
   id_proprietaire: 1,
@@ -36,6 +36,11 @@ interface User {
   role: string
 }
 
+interface Etat {
+  nom : string, 
+  color: string, 
+}
+
 @Component({
   selector: 'app-detail-ticket',
   templateUrl: './detail-ticket.component.html',
@@ -47,18 +52,55 @@ export class DetailTicketComponent implements OnInit{
   maxSize : number = 100000000;
   ticket : Ticket | undefined; 
   idConnectedUser: number | undefined; 
+  idTicket : undefined | number ;
+  affichage : boolean = false;
+  etatSelected : Etat |undefined; 
+  etatsTicket : Etat[] = [
+    {
+      nom : 'NOUVEAU',
+      color :'rgb(0, 62, 231)'
+    },
+    {
+      nom : 'ASSIGNE',
+      color :'rgb(0, 62, 231)'
+    },
+    {
+      nom : 'EN_COURS',
+      color :'rgb(0, 62, 231)'
+    },
+    {
+      nom : 'EN_ATTENTE',
+      color :'rgb(0, 62, 231)'
+    },
+    {
+      nom : 'RESOLU',
+      color :'rgb(0, 62, 231)'
+    },
+    {
+      nom : 'REJETE',
+      color :'rgb(0, 62, 231)'
+    }
+  ]
 
   uploadedFiles: any[] = [];
-  constructor(private messageService: MessageService, private requestService: RequestService, private cookieService : CookieService) {}
+  constructor(private messageService: MessageService, private requestService: RequestService, private cookieService : CookieService,
+    private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-
-    this.requestService.getTicketById(6).subscribe((result)=>{
-      this.ticket = result;
-      console.log(result)
+    this.affichage = false;
+    this.route.params.subscribe(params => {
+      this.idTicket= +params['idTicket'];
+      if(this.idTicket != undefined){
+        this.requestService.getTicketById(this.idTicket).subscribe((result)=>{
+          this.ticket = result;
+        })
+      }
     })
+
+
     this.idConnectedUser = +this.cookieService.get('AuthUser')
   }
+
 
 
   onUpload(event: any) {

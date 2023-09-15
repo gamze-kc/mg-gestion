@@ -57,6 +57,7 @@ export class TicketsService {
   }
 
   async getTicketParId(id: number): Promise<TicketEntity> {
+    
     try {
       return await this.ticketRepository.findOne({where:{
         id,

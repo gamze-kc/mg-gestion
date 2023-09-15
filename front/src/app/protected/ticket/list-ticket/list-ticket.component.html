@@ -1,6 +1,6 @@
 <div class="conteneur_ticket">
 
-    <table class="ticket" *ngFor="let ticket of tickets">
+    <table class="ticket" *ngFor="let ticket of tickets" (click)="redirectTo(ticket.id)">
         <tr >
             <td rowspan="9" style="width: 25px; text-align: center;  background-color: rgb(172, 172, 255);">
                 <span class="pi pi-desktop" style="color:white;"></span>
