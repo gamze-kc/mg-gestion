@@ -15,31 +15,31 @@ export class HeaderComponent implements OnInit {
   items = [
     {
 
-                label: 'Déconnexion',
-                icon: 'pi pi-power-off',
-                command: () => {
-                    this.deconnexion();
-                }
-         
-              }
-];
-
-  nom :string =""; 
-  prenom :string = "";
-  constructor(private messageService: MessageService, 
-    private cookieService: CookieService, 
-    private requestService: RequestService, 
-    private router : Router) {}
-  
-  ngOnInit() {
-    const id = +this.cookieService.get('AuthUser');
-      if(this.cookieService.get('AuthUser')){
-
-        this.requestService.OneUser(+this.cookieService.get('AuthUser')).subscribe((user) => {
-          this.prenom = user.prenom; 
-          this.nom = user.nom;
-        });
+      label: 'Déconnexion',
+      icon: 'pi pi-power-off',
+      command: () => {
+        this.deconnexion();
       }
+
+    }
+  ];
+
+  nom: string = "";
+  prenom: string = "";
+  constructor(private messageService: MessageService,
+    private cookieService: CookieService,
+    private requestService: RequestService,
+    private router: Router) { }
+
+  ngOnInit() {
+
+    if (this.cookieService.get('AuthUser')) {
+
+      this.requestService.OneUser(+this.cookieService.get('AuthUser')).subscribe((user) => {
+        this.prenom = user.prenom;
+        this.nom = user.nom;
+      });
+    }
   }
 
 

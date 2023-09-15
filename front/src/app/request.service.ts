@@ -24,7 +24,18 @@ interface Ticket {
   etat: string,
   id_user_support : null | User,
   id: 1
+  commentaires : undefined | Commentaire[]
 }
+
+
+interface Commentaire {
+  id: number,
+  date : Date,
+  texte : string,
+  piece_jointe: string,
+  id_proprietaire : User,
+}
+
 
 interface Categorie {
   id : number, 
@@ -81,7 +92,7 @@ export class RequestService {
     return this.http.get(apiUrl).pipe(
       map((data: any) => {
         // Transformez les données de l'API en un tableau d'objets User
-        return data[0];
+        return data;
       })
     );
   }
@@ -91,7 +102,17 @@ export class RequestService {
     return this.http.get(apiUrl).pipe(
       map((data: any) => {
         // Transformez les données de l'API en un tableau d'objets User
-        return data[0];
+        return data;
+      })
+    );
+  }
+
+  getTicketById(id:number): Observable<Ticket> {
+    const apiUrl = 'http://localhost:3000/tickets/'+id;
+    return this.http.get(apiUrl).pipe(
+      map((data: any) => {
+        // Transformez les données de l'API en un tableau d'objets User
+        return data;
       })
     );
   }

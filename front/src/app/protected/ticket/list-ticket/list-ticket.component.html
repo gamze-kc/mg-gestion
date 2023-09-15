@@ -2,7 +2,7 @@
 
     <table class="ticket" *ngFor="let ticket of tickets">
         <tr >
-            <td rowspan="8" style="width: 25px; text-align: center;  background-color: rgb(172, 172, 255);">
+            <td rowspan="9" style="width: 25px; text-align: center;  background-color: rgb(172, 172, 255);">
                 <span class="pi pi-desktop" style="color:white;"></span>
             </td>
         </tr>
@@ -13,6 +13,9 @@
         
         <tr>
             <td class="id" style="padding-left: 5px;" colspan="2">id : {{ticket.id}}</td>
+        </tr>
+        <tr>
+            <td class="id" style="padding-left: 5px;" colspan="2">Mathias LORET</td>
         </tr>
         <tr style="height: 5px;">
             <td colspan="2" style="padding-left: 5px;"></td>
@@ -31,7 +34,7 @@
                 <i *ngIf="ticket.etat == 'EN COURS'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(235, 199, 0)"></i>
                 <i *ngIf="ticket.etat == 'EN ATTENTE'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(165, 165, 165)"></i>
                 <i *ngIf="ticket.etat == 'RESOLUT'" class="pi pi-circle-fill" style=" font-size:0.8em;color:green"></i>
-                {{ticket.etat}}
+                {{ticket.etat | lowercase}}
             </td>
         </tr>
     </table>

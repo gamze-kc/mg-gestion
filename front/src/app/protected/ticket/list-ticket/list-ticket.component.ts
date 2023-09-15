@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'app/request.service';
 import { CookieService } from 'ngx-cookie-service';
 interface Ticket {
-  id_proprietaire: 1,
+  id_proprietaire: number,
   date_creation: Date,
   objet: string,
   description: string,
@@ -10,9 +10,19 @@ interface Ticket {
   type: string,
   piece_jointe: string,
   etat: string,
-  id_user_support: null | User,
-  id: 1
+  id_user_support : null | User,
+  id: number,
+  commentaires : undefined | Commentaire[]
 }
+
+interface Commentaire {
+  id: number,
+  date : Date,
+  texte : string,
+  piece_jointe: string,
+  id_proprietaire : User,
+}
+
 
 interface User {
   id: number,
@@ -53,8 +63,7 @@ export class ListTicketComponent implements OnInit {
             this.tickets.push(result)
           }
         }
-    });
-
+    })
   }
 }
 }
