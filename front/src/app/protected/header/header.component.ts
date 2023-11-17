@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
 
     if (this.cookieService.get('AuthUser')) {
-
+      
       this.requestService.OneUser(+this.cookieService.get('AuthUser')).subscribe((user) => {
         this.prenom = user.prenom;
         this.nom = user.nom;

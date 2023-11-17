@@ -42,11 +42,11 @@ async getAllUsers() {
   example : 1,
   description : 'Id de l\'utilisateur'
 })
-  @Get('user/:idUser')
+  @Get(':idUser')
   async findOne(@Param('idUser') id: number) {
 
     console.log(id);
-    return this.usersService.findOne(id);
+    return this.usersService.findOne(+id);
   }
 
 }

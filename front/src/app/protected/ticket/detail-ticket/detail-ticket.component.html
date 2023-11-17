@@ -32,7 +32,13 @@
 
 
                 <select [(ngModel)]="etatSelected">
-                    <option class="flex align-items-center gap-2" *ngFor="let etat of etatsTicket">
+   
+                        <option *ngFor="let etat of etatsTicket" value={{etat.nom}} >
+                            {{etat.nom}}
+                        </option>
+
+                      
+                    <!-- <option   *ngIf="etat.nom == ''">
                         
                         <i *ngIf="etat?.nom == 'ASSIGNE'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(173, 0, 216)"></i>
                         <i *ngIf="etat?.nom == 'EN COURS'" class="pi pi-circle-fill" style=" font-size:0.8em;color:rgb(235, 199, 0)"></i>
@@ -40,7 +46,7 @@
                         <i *ngIf="etat?.nom == 'RESOLU'" class="pi pi-circle-fill" style=" font-size:0.8em;color:green"></i>
                         
                         <p> <i class="pi pi-check"></i>{{etat?.nom | lowercase}}</p>
-                    </option>
+                    </option> -->
                 </select>
 
 

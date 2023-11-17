@@ -12,7 +12,7 @@ interface Ticket {
   categorie: string,
   type: string,
   piece_jointe: string,
-  etat: string,
+  etat: Etat,
   id_user_support : null | User,
   id: 1
   commentaires : undefined | Commentaire[]
@@ -89,10 +89,12 @@ export class DetailTicketComponent implements OnInit{
   ngOnInit(): void {
     this.affichage = false;
     this.route.params.subscribe(params => {
-      this.idTicket= +params['idTicket'];
-      if(this.idTicket != undefined){
+      this.idTicket = params['idTicket'];
+      if(!Number.isNaN(this.idTicket) && this.idTicket != undefined){
+        this.idTicket = + this.idTicket
         this.requestService.getTicketById(this.idTicket).subscribe((result)=>{
-          this.ticket = result;
+          let ticket : any = result;
+          //ticket.etat = this.etatsTicket.find()
         })
       }
     })

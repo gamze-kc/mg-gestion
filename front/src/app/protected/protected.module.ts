@@ -6,6 +6,7 @@ import { MenuModule } from './menu/menu.module';
 import { HeaderModule } from './header/header.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { ParametreAppComponent } from './parametre-app/parametre-app.component';
@@ -18,10 +19,11 @@ import { TableModule } from 'primeng/table';
     MenuModule,
     HeaderModule,
     ButtonModule,
-    ProtectedRoutingModule,
+    AccordionModule,
     FormsModule,
     ReactiveFormsModule,
     TableModule,
+    ProtectedRoutingModule,
     CommonModule, 
   ]
 })

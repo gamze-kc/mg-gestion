@@ -89,6 +89,7 @@ export class RequestService {
 
   OneUser(id: number): Observable<User> {
     const apiUrl = 'http://localhost:3000/users/'+id;
+    console.log(apiUrl)
     return this.http.get(apiUrl).pipe(
       map((data: any) => {
         // Transformez les données de l'API en un tableau d'objets User
