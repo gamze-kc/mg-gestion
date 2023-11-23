@@ -54,6 +54,9 @@ interface Type {
 })
 export class RequestService {
 
+  role = this.cookieService.get('Role');
+  idUser = this.cookieService.get('AuthUser');
+
   constructor(private http: HttpClient,
     private cookieService: CookieService ) { }
 
@@ -89,7 +92,6 @@ export class RequestService {
 
   OneUser(id: number): Observable<User> {
     const apiUrl = 'http://localhost:3000/users/'+id;
-    console.log(apiUrl)
     return this.http.get(apiUrl).pipe(
       map((data: any) => {
         // Transformez les données de l'API en un tableau d'objets User
@@ -113,6 +115,26 @@ export class RequestService {
     return this.http.get(apiUrl).pipe(
       map((data: any) => {
         // Transformez les données de l'API en un tableau d'objets User
+        return data;
+      })
+    );
+  }
+
+
+  newTicket(objet: string, description: string, id_cat: number, id_type: number, piece_jointe: any): Observable<any> {
+    const requestBody = {
+      id_proprietaire: this.idUser,
+      objet: objet,
+      description: description,
+      id_categorie: id_cat,
+      id_type: id_type,
+      piece_jointe: piece_jointe
+    };
+
+    return this.http.post('http://localhost:3000/tickets/new/', requestBody).pipe(
+      map((data: any) => {
+        // Transformez les données de l'API en un objet
+        console.log('data:', data);
         return data;
       })
     );

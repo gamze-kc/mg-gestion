@@ -42,7 +42,7 @@
     <p-dialog header="Nouveau Ticket" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
         [draggable]="false" [resizable]="true" [maximizable]="true">
         <span class="p-float-label" style="margin-top: 25px;">
-            <input type="text" style="width:100%;" id="float-input-objet" pInputText />
+            <input [(ngModel)]="newTicketObjet" type="text" style="width:100%;" id="float-input-objet" pInputText />
             <label for="float-input-objet">Objet</label>
         </span>
 
@@ -56,10 +56,10 @@
             </tr>
             <tr>
                 <td>
-                    <p-dropdown [options]="categories" [(ngModel)]="selectedCategorieNew" optionLabel="libelle"></p-dropdown>
+                    <p-dropdown [options]="categories" [(ngModel)]="newTicketCategorie" optionLabel="libelle"></p-dropdown>
                 </td>
                 <td></td>
-                <td><p-dropdown [options]="types" [(ngModel)]="selectedTypeNew" optionLabel="libelle"></p-dropdown>
+                <td><p-dropdown [options]="types" [(ngModel)]="newTicketType" optionLabel="libelle"></p-dropdown>
                 </td>
             </tr>
         </table>
@@ -67,9 +67,10 @@
 
 
         <span class="p-float-label" style="margin-top: 25px;">
-            <textarea id="float-input" style="width:100%;" rows="5" cols="30" pInputTextarea></textarea>
-            <label for="float-input">Commentaire</label>
+            <textarea [(ngModel)]="newTicketcommentaire" id="float-input2" style="width:100%;" rows="5" cols="30" pInputTextarea></textarea>
+            <label for="float-input2">Commentaire</label>
         </span>
+        
 
         <p-fileUpload [style]="{'margin-top':'10px'}" mode="basic" chooseLabel="Ajouter une pièce jointe" name="demo[]"
             url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*,.pdf"

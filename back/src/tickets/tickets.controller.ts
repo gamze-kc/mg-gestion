@@ -61,7 +61,7 @@ export class TicketsController {
 
   @Post('new')
   async create(@Body() createTicketDto: CreateTicketDto): Promise<TicketEntity | Error> {
-
+    console.log(createTicketDto)
     try {
 
       //console.log(createTicketDto);

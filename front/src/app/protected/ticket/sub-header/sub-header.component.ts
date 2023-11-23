@@ -30,12 +30,13 @@ export class SubHeaderComponent   implements OnInit   {
   dateFin: Date | undefined;
   selectedCategorie: Categorie | undefined;
   selectedType: Type | undefined;
-  selectedCategorieNew: Categorie | undefined;
-  selectedTypeNew: Type | undefined;
-  uploadedFiles: any[] = [];
   isAdmin = false; 
 
-
+  newTicketObjet !: string; 
+  newTicketCategorie !:Categorie; 
+  newTicketType !: Type; 
+  newTicketcommentaire !: string; 
+  newTicketuploadedFiles: any[] = [];
 
   constructor(private messageService: MessageService,
     private cookieService :CookieService, 
@@ -80,13 +81,19 @@ reloadFiltre() {
 
 onUpload(event: any) {
   for (let file of event.files) {
-    this.uploadedFiles.push(file);
+    this.newTicketuploadedFiles.push(file);
   }
 
   this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
 }
 
 creerTicket(){
-  
+  console.log(this.newTicketObjet);
+  console.log(this.newTicketCategorie);
+  console.log(this.newTicketType);
+  console.log(this.newTicketcommentaire);
+  console.log(this.newTicketuploadedFiles	);
+  this.requestService.newTicket(this.newTicketObjet,this.newTicketcommentaire,this.newTicketCategorie.id,this.newTicketType.id,this.newTicketuploadedFiles.toString()).subscribe((data)=>console.log(data));
+
 }
 }
